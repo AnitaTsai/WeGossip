@@ -48,12 +48,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     templateUrl:'index.html',
     controller:'LoginCtrl'
   })*/
-  /*
-  .state('login', {
-    url: '/',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-})*/
+  
 .state('app', {
     url: '/app',
     abstract: true,
@@ -61,6 +56,11 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     controller: 'LoginCtrl'
   })
 
+  .state('authentication',{
+    url:'/authentication',
+    templateUrl:'templates/authentication.html',
+    controller: 'LoginCtrl'
+  })
 
   .state('signup', {
     url: '/signup',
@@ -74,16 +74,6 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     controller: 'LoginCtrl'
   })
   
-   /* 
-  .state('app.login', {
-      url: '/login',
-      views: {
-           'menuContent': {
-          templateUrl: 'templates/login.html',
-          //controller: 'LoginCtrl'
-        }
-      }
-    })*/
   .state('app.main', {
       url: '/main',
       views: {

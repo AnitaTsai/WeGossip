@@ -26,7 +26,7 @@ angular.module('starter.loginCtrl', [])
             // login success
             alert("Success!");
             //帳號成功後自動跳回login 可接"location.href='#/login'",2000 則為2秒後自動跳回
-            setTimeout("location.href='#/login'",0);
+            setTimeout("location.href='#/authentication'",0);
           },
           error: function(user, error) {
             // login fail
