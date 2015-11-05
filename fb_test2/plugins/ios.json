@@ -51,6 +51,10 @@
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -86,6 +90,12 @@
                             "xml": true,
                             "count": 1
                         }
+                    ],
+                    "CoreLocation.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -106,6 +116,12 @@
                     "CFBundleURLTypes": [
                         {
                             "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb1481027875536884</string></array></dict></array>",
+                            "count": 1
+                        }
+                    ],
+                    "NSLocationWhenInUseUsageDescription": [
+                        {
+                            "xml": "<string />",
                             "count": 1
                         }
                     ]
@@ -132,6 +148,9 @@
         "phonegap-facebook-plugin": {
             "APP_ID": "1481027875536884",
             "APP_NAME": "myApp2",
+            "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
         }
     },

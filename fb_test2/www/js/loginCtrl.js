@@ -1,4 +1,5 @@
-angular.module('loginCtrl', [])
+angular.module('starter.loginCtrl', [])
+
 
 //deal with login and signUp
 .controller('LoginCtrl', function($scope, $state, $cordovaFacebook) {
@@ -43,6 +44,7 @@ angular.module('loginCtrl', [])
       // Do stuff after successful login.
       console.log(user);
       alert("Success!");
+      setTimeout("location.href='#/app/main'",0);
     },
     error: function(user, error) {
       // The login failed. Check error to see why.
