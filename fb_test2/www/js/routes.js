@@ -42,13 +42,6 @@ angular.module('starter.routes', [])
       }
     });
 
- /* .state('main', {
-   url: '/main',
-   templateUrl: 'templates/main.html',
-   controller: 'LoginCtrl'
-   
- });
-*/
   $urlRouterProvider.otherwise("/login");
 
 })
