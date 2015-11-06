@@ -43,7 +43,7 @@ angular.module('starter.loginCtrl', [])
     success: function(user) {
       // Do stuff after successful login.
       console.log(user);
-      alert("Success!");
+     //alert("Success!");
       setTimeout("location.href='#/app/main'",0);
     },
     error: function(user, error) {

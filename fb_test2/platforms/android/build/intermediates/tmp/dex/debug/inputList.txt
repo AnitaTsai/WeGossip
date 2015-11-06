@@ -1,2 +1,0 @@
-C:\Users\Wen\fb_test2\platforms\android\build\intermediates\classes\debug
-C:\Users\Wen\fb_test2\platforms\android\build\intermediates\pre-dexed\debug\classes-96122e91c779d75855c0a55bcef1159fc59a217d.jar
