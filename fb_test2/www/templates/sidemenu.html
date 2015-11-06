@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content drag-content = "false">
-    <ion-nav-bar align-title="center" class="bar-calm nav-title-slide-ios7">
+    <ion-nav-bar align-title="center" class="bar-calm nav-title-slide-ios7 bar-header ">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -8,7 +8,17 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+
+      <div class="bar  bar-subheader bar-header " style=" text-align: center;">
+          <div class="button-bar">
+<a class="button button-small button-light">First</a>
+<a class="button button-small button-light">Second</a>
+
+</div>
+      </div>
+
     </ion-nav-bar>
+
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
