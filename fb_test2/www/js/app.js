@@ -15,8 +15,8 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-
-    Parse.initialize("UPLMUZ0E5ru230VpEMBKTjfmBsv1vkQH2oEnpdy9", "jA2vO6HKMSMKFvCUkqiMgVvQSoM4DkVVNy6rskr6");
+    
+    Parse.initialize("0ekcDIcYCDRfF3rLy4yo5JVmqdOxPe7o4fyMCYCh", "HXaKOjKo77cU6SnC8tYdm5uECwDAqPbUPiAiOytd");
 
     if(!(ionic.Platform.isIOS() || ionic.Platform.isAndroid())){
       window.fbAsyncInit = function() {
@@ -49,7 +49,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     controller:'LoginCtrl'
   })*/
   
-.state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/sidemenu.html',
@@ -82,7 +82,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
           controller: 'mapCtrl'
         }
       }
-    });
+  });
  /*
   .state('main', {
    url: '/main',

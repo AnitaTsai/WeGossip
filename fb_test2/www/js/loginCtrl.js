@@ -1,30 +1,64 @@
+var CurrentUser;
 angular.module('starter.loginCtrl', [])
 
 
 //deal with login and signUp
 .controller('LoginCtrl', function($scope, $state, $cordovaFacebook) {
 
-  $scope.data = {};
 
+  $scope.data = {};
+  
+
+  $scope.Check = function(){
+    
+    if ($scope.data.emailverification==CurrentUser.get("verification")){
+      alert("success!!");
+      CurrentUser.set("verified",true);
+      CurrentUser.save(null,{});  
+      setTimeout("location.href='#/app/main'",0);
+    }else{
+      alert("It is not verification number!!");
+    }
+  }
+
+
+
+  $scope.Register=function(){
+    Parse.Cloud.run('register',{username:$scope.data.username,password:$scope.data.password,email:$scope.data.email},{
+      success:function(result){
+        alert(result);
+        Parse.User.logIn($scope.data.username, $scope.data.password, {
+          success: function(user) {
+            CurrentUser = user;
+          },
+          error: function(user, error) {
+            alert("Erroe password or username!");
+          }
+        });
+        setTimeout("location.href='#/authentication'",0);
+      },
+      error:function(error){
+        alert(error);
+      }
+    });
+  }
 //use email to signUp
- $scope.signupEmail = function(){
+  $scope.signupEmail = function(){
 
      //Create a new user on Parse
     if( (ValidateEmail($scope.data.email)) && (ValidatePWD($scope.data.password,$scope.data.confirm_password)) )
     {
-        var user = new Parse.User();
+      var user = new Parse.User();
 
-        user.set("username", $scope.data.username);
-        user.set("password", $scope.data.password);
-        user.set("email", $scope.data.email);
-
-        // other fields can be set just like with Parse.Object
-        user.set("somethingelse", "like this!");
-
-        user.signUp(null, {
-          success: function(user) {
+      user.set("username", $scope.data.username);
+      user.set("password", $scope.data.password);
+      user.set("email", $scope.data.email);    
+      // other fields can be set just like with Parse.Object
+      user.set("somethingelse", "like this!");
+      user.signUp(null, {
+        success: function(user) {
             // login success
-            alert("Success!");
+          alert("Success!");
             //帳號成功後自動跳回login 可接"location.href='#/login'",2000 則為2秒後自動跳回
             setTimeout("location.href='#/authentication'",0);
           },
@@ -34,23 +68,29 @@ angular.module('starter.loginCtrl', [])
           }
         });
     }
-
   };
 
 // use email to login
   $scope.loginEmail = function(){
     Parse.User.logIn($scope.data.username, $scope.data.password, {
-    success: function(user) {
+      success: function(user) {
       // Do stuff after successful login.
-      console.log(user);
+        CurrentUser = user;
+        console.log(user);
+        if (CurrentUser.get("verified")){
+          setTimeout("location.href='#/app/main'",0);
+        }else{
+          alert("You don't have verified yet!");
+          setTimeout("location.href='#/authentication'",0);
+        }
      //alert("Success!");
-      setTimeout("location.href='#/app/main'",0);
-    },
-    error: function(user, error) {
+        
+      },
+      error: function(user, error) {
       // The login failed. Check error to see why.
-      alert("Erroe password or username!");
-    }
-  });
+        alert("Erroe password or username!");
+      }
+    });
 
   };
 
