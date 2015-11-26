@@ -7,9 +7,11 @@
 
 .scroll {
   height: 100%;
+  padding-top: 24px !important;
 }
 .bar-header {
     border: 0px !important;
+    margin-top: 20px !important;
     border-bottom-color: transparent !important;
     background-image: none;
     border-bottom: none;
@@ -17,7 +19,7 @@
 
 .bar-calm
 {
-	height: 50px;
+	height: 54px;
 }
 .has-header
 {
@@ -27,3 +29,4 @@
 {
 	top:54px;
 }
+

@@ -1,14 +1,15 @@
 <!--googlemap-->
 <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBUMIcfRwkjLaMVbte4kk9_buYZ1PmPrHU&sensor=true"></script>-->
-<ion-view title="Home" >
+<ion-view title="Home">
 
     <ion-content padding="true" class="has-header" >
+   
         <div id="map" data-tap-disabled="true"></div>
 
         <div class="button-bar">
-  	<a class="button button-icon icon ion-ios-search-strong"></a>
-  	<a class="button button-icon icon ion-speakerphone"></a>
-  	<a class="button button-icon icon ion-ios-bell-outline"></a>
+  	<button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
+  	<button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
+  	<button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
         </div>
 
     </ion-content>

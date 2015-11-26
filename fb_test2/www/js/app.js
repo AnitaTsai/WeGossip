@@ -53,7 +53,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     url: '/app',
     abstract: true,
     templateUrl: 'templates/sidemenu.html',
-    controller: 'LoginCtrl'
+    
   })
 
   .state('authentication',{
@@ -67,11 +67,25 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     templateUrl: 'templates/signup.html',
     controller: 'LoginCtrl'
   })
+  .state('forgetPassword', {
+    url: '/forgetPassword',
+    templateUrl: 'templates/forgetPassword.html',
+    controller: 'LoginCtrl'
+  })
  
  .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
+  })
+
+ .state('app.friends', {
+    url: '/friends',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/friends.html',
+      }
+    }
   })
   
   .state('app.main', {

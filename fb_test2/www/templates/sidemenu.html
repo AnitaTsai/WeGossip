@@ -13,7 +13,7 @@
         <button class="button button-icon button-clear ion-funnel" men-toggle="right"></button>
       </ion-nav-buttons>
 
-      <div class="bar  bar-subheader bar-header " style=" text-align: center;">
+       <div class="bar  bar-subheader bar-header " style=" text-align: center;">
           <div class="button-bar">
           <a class="button button-small button-light">Map</a>
           <a class="button button-small button-light">List</a>
@@ -28,21 +28,30 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Side Menu</h1>
+
     </ion-header-bar>
     <ion-content>
+    <img src="/img/4QFr3V4lTMqv6OoAqeAY_user.png" width="30%" height="auto" style="width: 30%; height: auto; display : block ;  margin:5px auto;" >
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
+      <ion-item menu-close href="#/app/main">
+          <b>Home</b>
         </ion-item>
-        <ion-item menu-close href="#/app/map">
-          Map
+        <ion-item menu-close href=" #/app/friends">
+          <i class="icon ion-person-stalker"></i>
+          <b>Friend</b>
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
+        <ion-item menu-close href="">
+          <i class="icon ion-speakerphone"></i>
+          <b>History</b>
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+        <ion-item menu-close href="">
+          <i class="icon ion-gear-a"></i>
+          <b>Settings</b>
+        </ion-item>
+        <ion-item menu-close href="">
+          <i class="icon ion-power"></i>
+          <b>Log out</b>
         </ion-item>
       </ion-list>
     </ion-content>
