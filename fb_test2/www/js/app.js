@@ -87,6 +87,22 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
       }
     }
   })
+ .state('app.history', {
+    url: '/history',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/history.html',
+      }
+    }
+  })
+ .state('app.settings', {
+    url: '/settings',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/settings.html',
+      }
+    }
+  })
   
   .state('app.main', {
       url: '/main',
