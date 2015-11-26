@@ -14,3 +14,16 @@
     background-image: none;
     border-bottom: none;
 }
+
+.bar-calm
+{
+	height: 50px;
+}
+.has-header
+{
+	top:54px;
+}
+.bar-subheader
+{
+	top:54px;
+}
