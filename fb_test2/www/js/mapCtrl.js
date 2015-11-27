@@ -1,20 +1,31 @@
 angular.module('starter.mapCtrl', [])
 
-    .controller('mapCtrl', function($scope, $state, $cordovaGeolocation,$ionicPopup, $timeout) 
+    .controller('mapCtrl', function($scope, $state,$cordovaGeolocation,$ionicPopup, $timeout) 
     {
       var options = {timeout: 10000, enableHighAccuracy: true};
  
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
- 
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
+    var latLng = new google.maps.LatLng(24.969417,121.267472);
+    var myLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    
     var mapOptions = {
       center: latLng,
-      zoom: 15,
+      zoom: 17,
+      streetViewControl: false,
+      zoomControl: false,
+      mapTypeControl: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
  
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: "This is a marker!",
+    animation: google.maps.Animation.DROP
+  });
+    $scope.map = map;
   
   }, function(error){
     console.log("Could not get location");

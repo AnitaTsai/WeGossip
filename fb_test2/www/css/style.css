@@ -21,6 +21,10 @@
 {
 	height: 54px;
 }
+.bar-positive
+{
+  height: 54px;
+}
 .has-header
 {
 	top:54px;
@@ -30,5 +34,17 @@
 	top:2px;
 }
 
+.my-menu {
+  background-color: #3f4041;
+}
+.my-menu .list {
+  background-color: transparent;
+}
+
+.my-menu .item, .my-menu .item-content, .my-menu .item-complex{
+  background-color: transparent;
+  color: #FFFFFF;
+  border-color: rgba(0,0,0,0);
+}
 
 
