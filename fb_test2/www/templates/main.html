@@ -12,6 +12,25 @@
 
         <div id="map" data-tap-disabled="true"></div>
 
+
+        <!-- locate school -->
+        <button class="float-button1" ng-click="centerOnYZU()">
+          <span class="height-fix1">
+          <a class="content1">
+          <i class="ion-ios-home"> </i>
+          </a>
+          </span>
+        </button>
+
+        <!-- locate myself -->
+        <button class="float-button" ng-click="centerOnMe()">
+          <span class="height-fix">
+          <a class="content">
+          <i class="ion-ios-location"> </i>
+          </a>
+          </span>
+        </button>        
+
         <div class="button-bar">
   	<button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
   	<button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
