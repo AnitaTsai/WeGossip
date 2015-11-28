@@ -82,12 +82,13 @@ angular.module('starter.mapCtrl', [])
    // An elaborate, custom popup
    $ionicPopup.show({
               templateUrl: 'popup-template.html',
-              title: '<font color="0000ff">New message</font>',
+              title: '新增訊息',
+              cssClass: 'newMessage',
               scope: $scope,
               buttons: [
-                { text: 'Cancel'},
+                { text: '取消'},
                 {
-                  text: '<b>Save</b>',
+                  text: '<b>送出</b>',
                   type: 'button-positive',
                   onTap: function(e) {
                     return $scope.data.message;
@@ -99,5 +100,24 @@ angular.module('starter.mapCtrl', [])
                 alert(res);
               });
   };
+     
+  $scope.value = true; // position toggle button
+  $scope.positionChange = function()
+  {
+      if($scope.value == false){
+        $scope.value = true;
+      }else
+        $scope.value = false;
+        alert('toggle: '+$scope.value);
+  };  
+
+   $scope.active = 'group';
+    $scope.setActive = function(type) {
+        alert(type);
+        $scope.active = type;
+    };
+    $scope.isActive = function(type) {
+        return type === $scope.active;
+    };
 
 });

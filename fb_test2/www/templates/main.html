@@ -10,9 +10,7 @@
           </div>
       </div>
 
-        <div id="map" data-tap-disabled="true"></div>
-
-
+        <div id="map" data-tap-disabled="true"></div> 
         <!-- locate school -->
         <button class="float-button1" ng-click="centerOnYZU()">
           <span class="height-fix1">
@@ -29,7 +27,7 @@
           <i class="ion-ios-location"> </i>
           </a>
           </span>
-        </button>        
+        </button>               
 
         <div class="button-bar">
   	<button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
@@ -38,10 +36,20 @@
         </div>
 
       <script id="popup-template.html" type="text/ng-template">
-        <textarea style="width:230px;height:100px;background-color: #C0C0C0 " ng-model="data.message"></textarea>
+
+            <div class="button-bar">
+                <a class="button button-small" ng-class="{'button-positive': isActive('group')}" ng-click="setActive('group')">揪團</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('help')}" ng-click="setActive('help')">求救</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('chat')}" ng-click="setActive('chat')">閒聊</a>
+             </div>
+        <p></p>
+        <textarea style="width:280px;height:150px;background-color: #E8E8E8 " ng-model="data.message"></textarea>
+        <p></p>
         <ion-list>
-            <ion-toggle toggle-class="toggle-positive">Show position</ion-toggle>
+            <ion-toggle ng-model=value ng-change="positionChange()">顯示位置</ion-toggle>
+            <ion-item>選擇顯示對象</ion-item>
         </ion-list>
+
       </script>
 
     </ion-content>
