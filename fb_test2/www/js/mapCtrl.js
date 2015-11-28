@@ -45,16 +45,24 @@ angular.module('starter.mapCtrl', [])
   $scope.showPopup = function() {
    $scope.data = {}
    // An elaborate, custom popup
-   $ionicPopup.prompt({
-   title: 'New Message',
-   template: 'Enter message',
-   inputType: 'text',
-   inputPlaceholder: 'Your message...'
-
- }).then(function(res) {
-   console.log('Your message is', res);
-   alert(res);
- });
-  
+   $ionicPopup.show({
+              templateUrl: 'popup-template.html',
+              title: '<font color="0000ff">New message</font>',
+              scope: $scope,
+              buttons: [
+                { text: 'Cancel'},
+                {
+                  text: '<b>Save</b>',
+                  type: 'button-positive',
+                  onTap: function(e) {
+                    return $scope.data.message;
+                  }
+                },
+              ]
+              }).then(function(res) {
+                console.log('Tapped!', res);
+                alert(res);
+              });
   };
+
 });

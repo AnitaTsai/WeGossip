@@ -18,6 +18,13 @@
   	<button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
         </div>
 
+      <script id="popup-template.html" type="text/ng-template">
+        <textarea style="width:230px;height:100px;background-color: #C0C0C0 " ng-model="data.message"></textarea>
+        <ion-list>
+            <ion-toggle toggle-class="toggle-positive">Show position</ion-toggle>
+        </ion-list>
+      </script>
+
     </ion-content>
 
 </ion-view>
