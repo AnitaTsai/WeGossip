@@ -36,7 +36,13 @@
 
 /*side menu*/
 .my-menu {
-  background-color: #3f4041;
+  /*background-color: #3f4041;*/
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,75d6c2+0,78d3d8+45,78d3d8+45,78d3d8+50,78d3d8+50,05abe0+100,82d8f2+100 */
+background: #87e0fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #87e0fd 0%, #75d6c2 0%, #78d3d8 45%, #78d3d8 45%, #78d3d8 50%, #78d3d8 50%, #05abe0 100%, #82d8f2 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #87e0fd 0%,#75d6c2 0%,#78d3d8 45%,#78d3d8 45%,#78d3d8 50%,#78d3d8 50%,#05abe0 100%,#82d8f2 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #87e0fd 0%,#75d6c2 0%,#78d3d8 45%,#78d3d8 45%,#78d3d8 50%,#78d3d8 50%,#05abe0 100%,#82d8f2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
 }
 .my-menu .list {
   background-color: transparent;
@@ -44,7 +50,7 @@
 
 .my-menu .item, .my-menu .item-content, .my-menu .item-complex{
   background-color: transparent;
-  color: #FFFFFF;
+  color: #000066;
   border-color: rgba(0,0,0,0);
 }
 
