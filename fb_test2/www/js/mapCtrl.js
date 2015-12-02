@@ -1,7 +1,11 @@
+var positionx;
+var positiony;
 angular.module('starter.mapCtrl', [])
 
-    .controller('mapCtrl', function($scope, $ionicLoading, $compile,$state,$cordovaGeolocation,$ionicPopup, $timeout) 
+    .controller('mapCtrl', function($scope, $ionicLoading, $compile,$state,$cordovaGeolocation,$ionicPopup, $timeout , myFactoryService) 
     {
+      $scope.rslt = myFactoryService.getData();
+      console.log('currentuser', $scope.rslt);
       var options = {timeout: 10000, enableHighAccuracy: true};
  
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
@@ -57,9 +61,10 @@ angular.module('starter.mapCtrl', [])
           content: 'Getting current location...',
           showBackdrop: false
         });
-
         navigator.geolocation.getCurrentPosition(function(pos) {
+          
           $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+
           $scope.loading.hide();
         }, function(error) {
           alert('Unable to get location: ' + error.message);
@@ -78,6 +83,15 @@ angular.module('starter.mapCtrl', [])
   };
 
   $scope.showPopup = function() {
+
+    //讀取現在位置
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      positionx = pos.coords.latitude;
+      positiony = pos.coords.longitude;
+    }, function(error) {
+      alert('Unable to get location: ' + error.message);
+    });
+
    $scope.data = {}
    // An elaborate, custom popup
    $ionicPopup.show({
@@ -96,7 +110,17 @@ angular.module('starter.mapCtrl', [])
                 },
               ]
               }).then(function(res) {
-                console.log('Tapped!', res);
+
+                var MessageObject = Parse.Object.extend("MessageObject");
+                var message = new MessageObject();
+                message.set("positionx" , positionx);
+                message.set("positiony" , positiony);
+                message.set("username", $scope.rslt);
+                message.set("message", res);
+                message.save(null, {
+                  success: function (result){alert("Success")},error: function (error){alert("ERROR")} 
+                });
+                console.log('message', res);
                 alert(res);
               });
   };
