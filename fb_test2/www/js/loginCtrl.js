@@ -1,12 +1,30 @@
 var CurrentUser;
 angular.module('starter.loginCtrl', [])
 
+.factory('myFactoryService',function(){
+
+
+    var data= "";
+
+    return{
+        setData:function(str){
+            data = str;
+        },
+
+        getData:function(){
+            return data;
+        }
+    }
+
+
+})
 
 //deal with login and signUp
-.controller('LoginCtrl', function($scope, $state, $cordovaFacebook) {
-
-
+.controller('LoginCtrl', function($scope, $state, $cordovaFacebook , myFactoryService) {
   $scope.data = {};
+  
+  
+
   
 
   $scope.Check = function(){
@@ -75,6 +93,7 @@ angular.module('starter.loginCtrl', [])
     Parse.User.logIn($scope.data.username, $scope.data.password, {
       success: function(user) {
       // Do stuff after successful login.
+        myFactoryService.setData($scope.data.username);
         CurrentUser = user;
         console.log(user);
         if (CurrentUser.get("verified")){
