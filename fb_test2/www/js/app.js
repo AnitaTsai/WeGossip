@@ -79,6 +79,24 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     controller: 'LoginCtrl'
   })
 
+.state('app.profile', {
+    url: '/profile',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/profile.html',
+      }
+    }
+  })
+
+  .state('app.upload_picture', {
+    url: '/upload_picture',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/upload_picture.html',
+      }
+    }
+  })
+
  .state('app.friends', {
     url: '/friends',
     views:{
