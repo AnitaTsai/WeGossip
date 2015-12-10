@@ -101,6 +101,7 @@ angular.module('starter.loginCtrl', [])
         }else{
           alert("You don't have verified yet!");
           setTimeout("location.href='#/authentication'",0);
+          //setTimeout("location.href='#/app/main'",0);
         }
      //alert("Success!");
         

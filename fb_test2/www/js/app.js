@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapCtrl' ,'ngIOS9UIWebViewPatch'])
+angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapCtrl' ,'ngIOS9UIWebViewPatch' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -17,6 +17,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     }
     
     Parse.initialize("0ekcDIcYCDRfF3rLy4yo5JVmqdOxPe7o4fyMCYCh", "HXaKOjKo77cU6SnC8tYdm5uECwDAqPbUPiAiOytd");
+    //Parse.initialize("UPLMUZ0E5ru230VpEMBKTjfmBsv1vkQH2oEnpdy9", "jA2vO6HKMSMKFvCUkqiMgVvQSoM4DkVVNy6rskr6");
 
     if(!(ionic.Platform.isIOS() || ionic.Platform.isAndroid())){
       window.fbAsyncInit = function() {
@@ -87,14 +88,20 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
       }
     }
   })
-
-  .state('app.upload_picture', {
+/*
+  .state('app.profile.upload_picture', {
     url: '/upload_picture',
     views:{
       'menuContent':{
       templateUrl: 'templates/upload_picture.html',
       }
     }
+  })
+*/
+.state('upload_picture', {
+    url: '/upload_picture',
+    templateUrl: 'templates/upload_picture.html',
+  //  controller: 'LoginCtrl'
   })
 
  .state('app.friends', {
@@ -110,6 +117,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     views:{
       'menuContent':{
       templateUrl: 'templates/history.html',
+      controller: 'mapCtrl'
       }
     }
   })
