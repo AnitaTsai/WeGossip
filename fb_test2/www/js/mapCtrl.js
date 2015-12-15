@@ -1,5 +1,3 @@
-var positionx;
-var positiony;
 
 angular.module('starter.mapCtrl', [] )
 
@@ -84,11 +82,10 @@ angular.module('starter.mapCtrl', [] )
   };
 
   $scope.showPopup = function() {
-
+    var point;
     //讀取現在位置
     navigator.geolocation.getCurrentPosition(function(pos) {
-      positionx = pos.coords.latitude;
-      positiony = pos.coords.longitude;
+      point = new Parse.GeoPoint({latitude: pos.coords.latitude , longitude:pos.coords.longitude});
     }, function(error) {
       alert('Unable to get location: ' + error.message);
     });
@@ -114,8 +111,7 @@ angular.module('starter.mapCtrl', [] )
 
                 var MessageObject = Parse.Object.extend("MessageObject");
                 var message = new MessageObject();
-                message.set("positionx" , positionx);
-                message.set("positiony" , positiony);
+                message.set("position",point);
                 message.set("username", $scope.rslt);
                 message.set("message", res);
                 message.save(null, {
