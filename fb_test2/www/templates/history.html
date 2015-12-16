@@ -3,13 +3,11 @@
 <body ng-app >
 <script src="lib/ionic/js/ng-onload.min.js"></script> <!--history.html要用的-->
 <script src="../bower_components/angular/angular.min.js"></script>
-<script src="mapCtrl.js"></script>
+<script src="historyCtrl.js"></script>
 
-<ion-view title="History" ng-init="gethistory()" cache-view="false">
+<ion-view title="History" cache-view="false">
 
-
-
-    <ion-content padding="'true'" class="has-header" ng-init="">
+    <ion-content padding="'true'" class="has-header" >
         <form class="list"></form>
         <div ng-repeat="msg in msgs" >
           <ion-item menu-close="">{{ msg }}</ion-item>
