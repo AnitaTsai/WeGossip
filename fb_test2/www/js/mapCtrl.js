@@ -1,4 +1,5 @@
 
+var map ;
 angular.module('starter.mapCtrl', [] )
 
 .controller('mapCtrl', function($scope, $ionicLoading, $compile,$state,$cordovaGeolocation,$ionicPopup, $timeout , myFactoryService) {
@@ -19,8 +20,8 @@ angular.module('starter.mapCtrl', [] )
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
  
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    
     var marker = new google.maps.Marker({
       position: myLatLng,
       map: map,
@@ -50,6 +51,9 @@ angular.module('starter.mapCtrl', [] )
     }, function(error) {
       alert('Unable to get location: ' + error.message);
     });
+
+
+
   };
 
   $scope.centerOnMe = function() {
@@ -84,9 +88,11 @@ angular.module('starter.mapCtrl', [] )
 
   $scope.showPopup = function() {
     var point;
+    var NowPos;
     //讀取現在位置
     navigator.geolocation.getCurrentPosition(function(pos) {
       point = new Parse.GeoPoint({latitude: pos.coords.latitude , longitude:pos.coords.longitude});
+      NowPos = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
     }, function(error) {
       alert('Unable to get location: ' + error.message);
     });
@@ -117,6 +123,15 @@ angular.module('starter.mapCtrl', [] )
       message.set("message", res);
       message.save(null, {
         success: function (result){
+          
+          var marker = new google.maps.Marker({
+            position: NowPos,
+            map: map,
+            title: "This is a marker!",
+            animation: google.maps.Animation.DROP
+          });
+          marker.setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          marker.setMap(map);  
           alert("Success")
         },error: function (error){
           alert("ERROR")} 
