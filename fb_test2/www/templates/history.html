@@ -9,8 +9,8 @@
 
     <ion-content padding="'true'" class="has-header" >
         <form class="list"></form>
-        <div ng-repeat="msg in msgs" >
-          <ion-item menu-close="">{{ msg }}</ion-item>
+        <div ng-repeat="msg in msgs track by $index" >
+          <ion-item>{{ msg }}</ion-item>
  			<!--{{ a }}-->
 
 		</div>
