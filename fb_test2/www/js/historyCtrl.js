@@ -30,7 +30,6 @@ $scope.rslt = myFactoryService.getData();
        alert("Error: " + error.code + " " + error.message);
       }
     });
-  //};
 
 
  });

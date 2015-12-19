@@ -28,6 +28,29 @@ angular.module('starter.mapCtrl', [] )
       title: "This is a marker!",
       animation: google.maps.Animation.DROP
     });
+
+    var MessageObject = Parse.Object.extend("MessageObject");
+    var query = new  Parse.Query(MessageObject); 
+    query.find({
+      success: function(results) {
+        for (var i = 0; i < results.length; i++) {
+         //console.log(results[i].get('position')["_latitude"]);
+         //console.log(results[i].get('position')["_longitude"]);
+         var markerlatLng = new google.maps.LatLng(results[i].get('position')["_latitude"],results[i].get('position')["_longitude"]);   
+           var marker = new google.maps.Marker({
+            position: markerlatLng,
+            map: map,
+            title: "This is a marker!",
+            animation: google.maps.Animation.DROP
+          });
+           marker.setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+            //marker.setMap(map); 
+        }
+      },
+      error: function(error) {
+       alert("Error: " + error.code + " " + error.message);
+      }
+    });
     
     $scope.map = map;
   
@@ -38,6 +61,7 @@ angular.module('starter.mapCtrl', [] )
   $scope.RefreshData = function()
   {
     alert("Refresh");
+     
   };
 
   $scope.centerOnYZU = function() {
