@@ -32,6 +32,7 @@ angular.module('starter.loginCtrl', [])
     if ($scope.data.emailverification==CurrentUser.get("verification")){
       alert("success!!");
       CurrentUser.set("verified",true);
+     // CyrrentUser.set("profilepicture","http://files.parsetfss.com/673d9c47-c4ac-4a19-925c-fb660920c983/tfss-71ed696c-f3a4-4d4e-9050-74c4ffe3e793-4QFr3V4lTMqv6OoAqeAY_user.png");
       CurrentUser.save(null,{});  
       setTimeout("location.href='#/app/main'",0);
     }else{
