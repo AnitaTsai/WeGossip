@@ -128,6 +128,7 @@ angular.module('starter.mapCtrl', [] )
             position: NowPos,
             map: map,
             title: "This is a marker!",
+            label: "wrwerwer",
             animation: google.maps.Animation.DROP
           });
           marker.setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
