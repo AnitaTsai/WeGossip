@@ -1,4 +1,4 @@
-var CurrentUser;
+var CurrentUser
 angular.module('starter.loginCtrl', [])
 
 .factory('myFactoryService',function(){
@@ -23,15 +23,14 @@ angular.module('starter.loginCtrl', [])
 .controller('LoginCtrl', function($scope, $state, $cordovaFacebook , myFactoryService) {
   $scope.data = {};
   
-  
-
-  
+   
 
   $scope.Check = function(){
     
-    if ($scope.data.emailverification==CurrentUser.get("verification")){
+    if ($scope.data.emailverification == CurrentUser.get("verification")){
       alert("success!!");
       CurrentUser.set("verified",true);
+      //CurrentUser.set("profilePicture","http://files.parsetfss.com/673d9c47-c4ac-4a19-925c-fb660920c983/tfss-95d77a4e-07f0-4a54-a033-f88afa5d866a-4QFr3V4lTMqv6OoAqeAY_user.png");
       CurrentUser.save(null,{});  
       setTimeout("location.href='#/app/main'",0);
     }else{
@@ -45,15 +44,17 @@ angular.module('starter.loginCtrl', [])
     Parse.Cloud.run('register',{username:$scope.data.username,password:$scope.data.password,email:$scope.data.email},{
       success:function(result){
         alert(result);
+
         Parse.User.logIn($scope.data.username, $scope.data.password, {
           success: function(user) {
             CurrentUser = user;
+
           },
           error: function(user, error) {
             alert("Erroe password or username!");
           }
         });
-        setTimeout("location.href='#/authentication'",0);
+            //setTimeout("location.href='#/authentication'",0);
       },
       error:function(error){
         alert(error);
