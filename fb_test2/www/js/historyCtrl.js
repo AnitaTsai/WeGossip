@@ -19,7 +19,7 @@ $scope.rslt = myFactoryService.getData();
           var object = results[i];
           //alert(object.id + ' - ' + object.get('message'));
         // $scope.mes = object.get('message');
-        // console.log(results[i].get('message'));
+         //console.log(results[i].get('message'));
           
             
             $scope.msgs.push(results[i].get('message') );
