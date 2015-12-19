@@ -11,6 +11,16 @@
       </div>
 
         <div id="map" data-tap-disabled="true"></div> 
+
+        <!-- refresh-->
+        <button class="float-button2" ng-click="RefreshData()">
+          <span class="height-fix2">
+          <a class="content2">
+          <i class="ion-refresh"> </i>
+          </a>
+          </span>
+        </button>  
+
         <!-- locate school -->
         <button class="float-button1" ng-click="centerOnYZU()">
           <span class="height-fix1">
@@ -27,7 +37,7 @@
           <i class="ion-ios-location"> </i>
           </a>
           </span>
-        </button>               
+        </button>                   
 
         <div class="button-bar">
   	<button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>

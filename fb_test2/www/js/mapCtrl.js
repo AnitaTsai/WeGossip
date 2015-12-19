@@ -35,6 +35,11 @@ angular.module('starter.mapCtrl', [] )
     console.log("Could not get location");
   });
 
+  $scope.RefreshData = function()
+  {
+    alert("Refresh");
+  };
+
   $scope.centerOnYZU = function() {
     if(!$scope.map) {
       return;
