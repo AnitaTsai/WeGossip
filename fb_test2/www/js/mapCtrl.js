@@ -1,5 +1,7 @@
-
 var map ;
+var mymarker;
+var messagemark = [];
+
 angular.module('starter.mapCtrl', [] )
 
 .controller('mapCtrl', function($scope, $ionicLoading, $compile,$state,$cordovaGeolocation,$ionicPopup, $timeout , myFactoryService) {
@@ -9,7 +11,7 @@ angular.module('starter.mapCtrl', [] )
  
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
     var latLng = new google.maps.LatLng(24.969417,121.267472);   
-    var myLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    var mylocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapOptions = {
       center: latLng,
       zoom: 17,
@@ -22,39 +24,39 @@ angular.module('starter.mapCtrl', [] )
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
     
        //Marker + infowindow + angularjs compiled ng-click
-       var contentString = "<div><a ng-click='clickOnMarker()'>My Location</a></div>";
-        var compiled = $compile(contentString)($scope);
+    var contentString = "<div><a ng-click='clickOnMarker()'>My Location</a></div>";
+    var compiled = $compile(contentString)($scope);
 
-        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
+    var infowindow = new google.maps.InfoWindow({
+      content: compiled[0]
+    });
 
-    var marker = new google.maps.Marker({
-      position: myLatLng,
+    mymarker = new google.maps.Marker({
+      position: mylocation,
       map: map,
       title: "This is a marker!",
       animation: google.maps.Animation.DROP
     });
+    google.maps.event.addListener(mymarker, 'click', function() {
+      infowindow.open(map,marker);
+    });
 
-     google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-
-   /* var markers = [];
+    /*
+    var markers = [];
     function setAllMap(map) {
       for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
       }
     }*/
 
+    messagemark = [];
     var MessageObject = Parse.Object.extend("MessageObject");
     var query = new  Parse.Query(MessageObject); 
     query.find({
       success: function(results) {
        
         for (var i = 0; i < results.length; i++) {
-         var markerlatLng = new google.maps.LatLng(results[i].get('position')["_latitude"],results[i].get('position')["_longitude"]);   
+          var markerlatLng = new google.maps.LatLng(results[i].get('position')["_latitude"],results[i].get('position')["_longitude"]);   
            
            //Marker + infowindow + angularjs compiled ng-click
           var contentString = "<div><a ng-click='clickOnMarker()'>" + results[i].get('message')+  "</a></div>";
@@ -65,20 +67,21 @@ angular.module('starter.mapCtrl', [] )
           });
 
 
-           var marker = new google.maps.Marker({
+          messagemark[i] = new google.maps.Marker({
             position: markerlatLng,
             map: map,
             animation: google.maps.Animation.DROP
           });
-           marker.setTitle((i + 1).toString());
-           marker.setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+
+          messagemark[i].setTitle((i + 1).toString());
+          messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
             //marker.setMap(map); 
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                  return function() {
-                    infowindow.setContent(results[i].get('message'));
-                    infowindow.open(map, marker);
-                  }
-                })(marker, i));
+          google.maps.event.addListener(messagemark, 'click', (function(messagemark, i) {
+            return function() {
+              infowindow.setContent(results[i].get('message'));
+              infowindow.open(map, messagemark);
+            }
+          })(messagemark, i));
        }
       },
       error: function(error) {
@@ -86,6 +89,7 @@ angular.module('starter.mapCtrl', [] )
       }
     });
     
+
     $scope.map = map;
   
   }, function(error){
@@ -104,6 +108,48 @@ angular.module('starter.mapCtrl', [] )
   $scope.RefreshData = function()
   {
     alert("Refresh");
+    for(var i = 0 ; i < messagemark.length ; i++){
+      messagemark[i].setMap(null);
+    }
+    messagemark = [];
+    var MessageObject = Parse.Object.extend("MessageObject");
+    var query = new  Parse.Query(MessageObject); 
+    query.find({
+      success: function(results) {
+       
+        for (var i = 0; i < results.length; i++) {
+          var markerlatLng = new google.maps.LatLng(results[i].get('position')["_latitude"],results[i].get('position')["_longitude"]);   
+           
+           //Marker + infowindow + angularjs compiled ng-click
+          var contentString = "<div><a ng-click='clickOnMarker()'>" + results[i].get('message')+  "</a></div>";
+          var compiled = $compile(contentString)($scope);
+
+          var infowindow = new google.maps.InfoWindow({
+            content: compiled[0]
+          });
+
+
+          messagemark[i] = new google.maps.Marker({
+            position: markerlatLng,
+            map: map,
+            animation: google.maps.Animation.DROP
+          });
+
+          messagemark[i].setTitle((i + 1).toString());
+          messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+            //marker.setMap(map); 
+          google.maps.event.addListener(messagemark, 'click', (function(messagemark, i) {
+            return function() {
+              infowindow.setContent(results[i].get('message'));
+              infowindow.open(map, messagemark);
+            }
+          })(messagemark, i));
+       }
+      },
+      error: function(error) {
+       alert("Error: " + error.code + " " + error.message);
+      }
+    });
      
   };
 
@@ -138,13 +184,24 @@ angular.module('starter.mapCtrl', [] )
       showBackdrop: false
     });
     navigator.geolocation.getCurrentPosition(function(pos) {
-          
-      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 
+      mymarker.setMap(null);    
+      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
       $scope.loading.hide();
+
+      mylocation = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+      mymarker = new google.maps.Marker({
+        position: mylocation,
+        map: map,
+        title: "This is a marker!",
+        animation: google.maps.Animation.DROP
+      });
+      
+      
     }, function(error) {
       alert('Unable to get location: ' + error.message);
     });
+
   };
 
   $scope.showAlert = function() {
