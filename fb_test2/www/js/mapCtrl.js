@@ -3,7 +3,6 @@ var map ;
 angular.module('starter.mapCtrl', [] )
 
 .controller('mapCtrl', function($scope, $ionicLoading, $compile,$state,$cordovaGeolocation,$ionicPopup, $timeout , myFactoryService) {
-  
   $scope.rslt = myFactoryService.getData();
   console.log('currentuser', $scope.rslt);
   var options = {timeout: 10000, enableHighAccuracy: true};
@@ -22,6 +21,14 @@ angular.module('starter.mapCtrl', [] )
  
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
     
+       //Marker + infowindow + angularjs compiled ng-click
+       var contentString = "<div><a ng-click='clickOnMarker()'>My Location</a></div>";
+        var compiled = $compile(contentString)($scope);
+
+        var infowindow = new google.maps.InfoWindow({
+          content: compiled[0]
+        });
+
     var marker = new google.maps.Marker({
       position: myLatLng,
       map: map,
@@ -29,23 +36,50 @@ angular.module('starter.mapCtrl', [] )
       animation: google.maps.Animation.DROP
     });
 
+     google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+
+
+   /* var markers = [];
+    function setAllMap(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }*/
+
     var MessageObject = Parse.Object.extend("MessageObject");
     var query = new  Parse.Query(MessageObject); 
     query.find({
       success: function(results) {
+       
         for (var i = 0; i < results.length; i++) {
-         //console.log(results[i].get('position')["_latitude"]);
-         //console.log(results[i].get('position')["_longitude"]);
          var markerlatLng = new google.maps.LatLng(results[i].get('position')["_latitude"],results[i].get('position')["_longitude"]);   
+           
+           //Marker + infowindow + angularjs compiled ng-click
+          var contentString = "<div><a ng-click='clickOnMarker()'>" + results[i].get('message')+  "</a></div>";
+          var compiled = $compile(contentString)($scope);
+
+          var infowindow = new google.maps.InfoWindow({
+            content: compiled[0]
+          });
+
+
            var marker = new google.maps.Marker({
             position: markerlatLng,
             map: map,
-            title: "This is a marker!",
             animation: google.maps.Animation.DROP
           });
+           marker.setTitle((i + 1).toString());
            marker.setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
             //marker.setMap(map); 
-        }
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                  return function() {
+                    infowindow.setContent(results[i].get('message'));
+                    infowindow.open(map, marker);
+                  }
+                })(marker, i));
+       }
       },
       error: function(error) {
        alert("Error: " + error.code + " " + error.message);
@@ -57,6 +91,15 @@ angular.module('starter.mapCtrl', [] )
   }, function(error){
     console.log("Could not get location");
   });
+
+
+  google.maps.event.addDomListener(window, 'load');
+
+//click on marker information
+  $scope.clickOnMarker = function() {
+        alert('Example of infowindow with ng-click')
+  };
+
 
   $scope.RefreshData = function()
   {
