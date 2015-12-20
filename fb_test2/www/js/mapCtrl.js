@@ -38,7 +38,7 @@ angular.module('starter.mapCtrl', [] )
       animation: google.maps.Animation.DROP
     });
     google.maps.event.addListener(mymarker, 'click', function() {
-      infowindow.open(map,marker);
+      infowindow.open(map,mymarker);
     });
 
     /*
@@ -76,12 +76,12 @@ angular.module('starter.mapCtrl', [] )
           messagemark[i].setTitle((i + 1).toString());
           messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
             //marker.setMap(map); 
-          google.maps.event.addListener(messagemark, 'click', (function(messagemark, i) {
+          google.maps.event.addListener(messagemark[i], 'click', (function(messagemark, i) {
             return function() {
               infowindow.setContent(results[i].get('message'));
               infowindow.open(map, messagemark);
             }
-          })(messagemark, i));
+          })(messagemark[i], i));
        }
       },
       error: function(error) {
@@ -138,12 +138,12 @@ angular.module('starter.mapCtrl', [] )
           messagemark[i].setTitle((i + 1).toString());
           messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
             //marker.setMap(map); 
-          google.maps.event.addListener(messagemark, 'click', (function(messagemark, i) {
+          google.maps.event.addListener(messagemark[i], 'click', (function(messagemark, i) {
             return function() {
               infowindow.setContent(results[i].get('message'));
               infowindow.open(map, messagemark);
             }
-          })(messagemark, i));
+          })(messagemark[i], i));
        }
       },
       error: function(error) {
