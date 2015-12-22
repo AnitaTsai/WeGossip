@@ -1,6 +1,8 @@
-var map ;
-var mymarker;
-var messagemark = [];
+var map ;//地圖
+var mymarker;//使用者位置插針
+var messagemark = [];//所有發話插針
+var mymessagemark = [];//使用者發話插針
+var mymessagemarkcount = 0 ; //使用者發話插針數
 
 angular.module('starter.mapCtrl', [] )
 
@@ -111,7 +113,12 @@ angular.module('starter.mapCtrl', [] )
     for(var i = 0 ; i < messagemark.length ; i++){
       messagemark[i].setMap(null);
     }
+    for(var i = 0 ; i < mymessagemark.length ; i ++){
+      mymessagemark[i].setMap(null);
+    }
     messagemark = [];
+    mymessagemark = [];
+    mymessagemarkcount = 0 ;
     var MessageObject = Parse.Object.extend("MessageObject");
     var query = new  Parse.Query(MessageObject); 
     query.find({
@@ -252,16 +259,39 @@ angular.module('starter.mapCtrl', [] )
       message.set("message", res);
       message.save(null, {
         success: function (result){
-          
-          var marker = new google.maps.Marker({
+          /*
+          mymessagemark[mymessagemarkcount] = new google.maps.Marker({
             position: NowPos,
             map: map,
-            title: "This is a marker!",
-            label: "wrwerwer",
+            title: "This is a marker!",//fix
             animation: google.maps.Animation.DROP
           });
-          marker.setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
-          marker.setMap(map);  
+          mymessagemark[mymessagemarkcount].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          */
+          var contentString = "<div><a ng-click='clickOnMarker()'>" + res+  "</a></div>";
+          var compiled = $compile(contentString)($scope);
+
+          var infowindow = new google.maps.InfoWindow({
+            content: compiled[0]
+          });
+
+
+          mymessagemark[mymessagemarkcount] = new google.maps.Marker({
+            position: NowPos,
+            map: map,
+            animation: google.maps.Animation.DROP
+          });
+
+          //mymessagemark[i].setTitle((i + 1).toString()); //fix
+          mymessagemark[mymessagemarkcount].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+
+          google.maps.event.addListener(mymessagemark[mymessagemarkcount], 'click', (function(mymessagemark, mymessagemarkcount) {
+            return function() {
+              infowindow.setContent(res);
+              infowindow.open(map, mymessagemark);
+            }
+          })(mymessagemark[mymessagemarkcount], mymessagemarkcount));
+
           alert("Success")
         },error: function (error){
           alert("ERROR")} 
