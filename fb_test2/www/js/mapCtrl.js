@@ -3,6 +3,8 @@ var mymarker;//使用者位置插針
 var messagemark = [];//所有發話插針
 var mymessagemark = [];//使用者發話插針
 var mymessagemarkcount = 0 ; //使用者發話插針數
+var chattype = "group";
+
 
 angular.module('starter.mapCtrl', [] )
 
@@ -33,12 +35,71 @@ angular.module('starter.mapCtrl', [] )
       content: compiled[0]
     });
 
+    /*
+    var pinIcon = new google.maps.MarkerImage(
+      "img/4QFr3V4lTMqv6OoAqeAY_user.png" ,
+      null, // size is determined at runtime 
+      null, // origin is 0,0 
+      null, // anchor is bottom center of the scaled image 
+      new google.maps.Size(42, 42)
+    );
+    */
+    /*    
+    var goldStar = {
+      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+      fillColor: 'yellow',
+      fillOpacity: 0.8,
+      scale: 1,
+      strokeColor: 'gold',
+      strokeWeight: 14
+    };
+    */
+    /*
+    var mymarker2 = new google.maps.Marker({
+      position: mylocation,
+      map: map,
+      title: "This is a marker!",
+      animation: google.maps.Animation.DROP,
+    /*
+      //icon : pinIcon
+      /*
+      icon: {
+
+          path: google.maps.SymbolPath.CIRCLE,
+          strokeColor :'gold',
+          scale: 10,
+          
+        },*/
+    /*
+      icon:{
+        url: "img/4QFr3V4lTMqv6OoAqeAY_user.png" ,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      }
+
+    });
+    */
     mymarker = new google.maps.Marker({
       position: mylocation,
       map: map,
       title: "This is a marker!",
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
     });
+    
+    var cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: mylocation,
+      radius:  100,
+    });
+
+
     google.maps.event.addListener(mymarker, 'click', function() {
       infowindow.open(map,mymarker);
     });
@@ -76,7 +137,17 @@ angular.module('starter.mapCtrl', [] )
           });
 
           messagemark[i].setTitle((i + 1).toString());
-          messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+
+          if(results[i].get('type') == "group"){
+            messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          }
+          if(results[i].get('type') == "help"){
+            messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png');
+          }
+          if(results[i].get('type') == "chat"){
+            messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png');
+          }
+          
             //marker.setMap(map); 
           google.maps.event.addListener(messagemark[i], 'click', (function(messagemark, i) {
             return function() {
@@ -143,7 +214,15 @@ angular.module('starter.mapCtrl', [] )
           });
 
           messagemark[i].setTitle((i + 1).toString());
-          messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          if(results[i].get('type') == "group"){
+            messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          }
+          if(results[i].get('type') == "help"){
+            messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png');
+          }
+          if(results[i].get('type') == "chat"){
+            messagemark[i].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png');
+          }
             //marker.setMap(map); 
           google.maps.event.addListener(messagemark[i], 'click', (function(messagemark, i) {
             return function() {
@@ -246,17 +325,22 @@ angular.module('starter.mapCtrl', [] )
           text: '<b>送出</b>',
           type: 'button-positive',
           onTap: function(e) {
+
             return $scope.data.message;
           }
         },
       ]
     }).then(function(res) {
-
+      if (res==null){
+        console.log('meesage is null');
+        return ;
+      }
       var MessageObject = Parse.Object.extend("MessageObject");
       var message = new MessageObject();
       message.set("position",point);
       message.set("username", $scope.rslt);
       message.set("message", res);
+      message.set("type",chattype);
       message.save(null, {
         success: function (result){
           /*
@@ -283,7 +367,16 @@ angular.module('starter.mapCtrl', [] )
           });
 
           //mymessagemark[i].setTitle((i + 1).toString()); //fix
-          mymessagemark[mymessagemarkcount].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          if(chattype == "group"){
+            mymessagemark[mymessagemarkcount].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png');
+          }
+          if(chattype == "help"){
+            mymessagemark[mymessagemarkcount].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png');
+          }
+          if(chattype == "chat"){
+            mymessagemark[mymessagemarkcount].setIcon('http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png');
+          }
+          
 
           google.maps.event.addListener(mymessagemark[mymessagemarkcount], 'click', (function(mymessagemark, mymessagemarkcount) {
             return function() {
@@ -313,7 +406,21 @@ angular.module('starter.mapCtrl', [] )
 
   $scope.active = 'group';
   $scope.setActive = function(type) {
-    alert(type);
+    if(type == "group"){
+      alert("change type to group");
+      chattype = type;
+      console.log(chattype);
+    }
+    if(type == "help"){
+      alert("change type to help");
+      chattype = type;
+      console.log(chattype);
+    }
+    if(type == "chat"){
+      alert("change type to chat");
+      chattype = type;
+      console.log(chattype);
+    }
     $scope.active = type;
   };
   $scope.isActive = function(type) {
