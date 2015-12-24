@@ -1,0 +1,166 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'update',
+1 verbose cli   '-g',
+1 verbose cli   'cordova',
+1 verbose cli   'ionic' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.25
+4 verbose request where is /cordova
+5 verbose request registry https://registry.npmjs.org/
+6 verbose request id cf691db1919f8fc7
+7 verbose url raw /cordova
+8 verbose url resolving [ 'https://registry.npmjs.org/', './cordova' ]
+9 verbose url resolved https://registry.npmjs.org/cordova
+10 verbose request where is https://registry.npmjs.org/cordova
+11 info trying registry request attempt 1 at 18:52:13
+12 verbose etag "AJOQL8H8QNI2KY1DZ4YPC7FFG"
+13 http GET https://registry.npmjs.org/cordova
+14 verbose request where is /ionic
+15 verbose request registry https://registry.npmjs.org/
+16 verbose url raw /ionic
+17 verbose url resolving [ 'https://registry.npmjs.org/', './ionic' ]
+18 verbose url resolved https://registry.npmjs.org/ionic
+19 verbose request where is https://registry.npmjs.org/ionic
+20 info trying registry request attempt 1 at 18:52:13
+21 verbose etag "3PHB7K44PREMKB18O2M0QK1Q5"
+22 http GET https://registry.npmjs.org/ionic
+23 http 200 https://registry.npmjs.org/cordova
+24 silly registry.get cb [ 200,
+24 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly registry.get     etag: '"7RMD0JCIUZEIN9F97P0O0JHJ4"',
+24 silly registry.get     'content-type': 'application/json',
+24 silly registry.get     'cache-control': 'max-age=300',
+24 silly registry.get     'content-length': '371863',
+24 silly registry.get     'accept-ranges': 'bytes',
+24 silly registry.get     date: 'Thu, 24 Dec 2015 10:52:14 GMT',
+24 silly registry.get     via: '1.1 varnish',
+24 silly registry.get     age: '0',
+24 silly registry.get     connection: 'keep-alive',
+24 silly registry.get     'x-served-by': 'cache-hkg6827-HKG',
+24 silly registry.get     'x-cache': 'HIT',
+24 silly registry.get     'x-cache-hits': '1',
+24 silly registry.get     'x-timer': 'S1450954333.907420,VS0,VE227',
+24 silly registry.get     vary: 'Accept' } ]
+25 http 200 https://registry.npmjs.org/ionic
+26 silly registry.get cb [ 200,
+26 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"2XGDAN51LW4B5AQOP8XR8JXKC"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=300',
+26 silly registry.get     'content-length': '655333',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     date: 'Thu, 24 Dec 2015 10:52:14 GMT',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     connection: 'keep-alive',
+26 silly registry.get     'x-served-by': 'cache-hkg6820-HKG',
+26 silly registry.get     'x-cache': 'HIT',
+26 silly registry.get     'x-cache-hits': '1',
+26 silly registry.get     'x-timer': 'S1450954333.908951,VS0,VE235',
+26 silly registry.get     vary: 'Accept' } ]
+27 info outdated updating [ [ '/usr/local/lib', 'cordova', '5.3.3', '5.4.1', '5.4.1', 'latest' ],
+27 info outdated   [ '/usr/local/lib', 'ionic', '1.6.5', '1.7.12', '1.7.12', 'latest' ] ]
+28 verbose install where,what [ '/usr/local/lib', [ 'cordova@5.4.1' ] ]
+29 verbose install where,what [ '/usr/local/lib', [ 'ionic@1.7.12' ] ]
+30 verbose cache add [ 'cordova@5.4.1', null ]
+31 verbose cache add name=undefined spec="cordova@5.4.1" args=["cordova@5.4.1",null]
+32 verbose parsed url { protocol: null,
+32 verbose parsed url   slashes: null,
+32 verbose parsed url   auth: null,
+32 verbose parsed url   host: null,
+32 verbose parsed url   port: null,
+32 verbose parsed url   hostname: null,
+32 verbose parsed url   hash: null,
+32 verbose parsed url   search: null,
+32 verbose parsed url   query: null,
+32 verbose parsed url   pathname: 'cordova@5.4.1',
+32 verbose parsed url   path: 'cordova@5.4.1',
+32 verbose parsed url   href: 'cordova@5.4.1' }
+33 verbose cache add [ 'ionic@1.7.12', null ]
+34 verbose cache add name=undefined spec="ionic@1.7.12" args=["ionic@1.7.12",null]
+35 verbose parsed url { protocol: null,
+35 verbose parsed url   slashes: null,
+35 verbose parsed url   auth: null,
+35 verbose parsed url   host: null,
+35 verbose parsed url   port: null,
+35 verbose parsed url   hostname: null,
+35 verbose parsed url   hash: null,
+35 verbose parsed url   search: null,
+35 verbose parsed url   query: null,
+35 verbose parsed url   pathname: 'ionic@1.7.12',
+35 verbose parsed url   path: 'ionic@1.7.12',
+35 verbose parsed url   href: 'ionic@1.7.12' }
+36 verbose cache add name="cordova" spec="5.4.1" args=["cordova","5.4.1"]
+37 verbose parsed url { protocol: null,
+37 verbose parsed url   slashes: null,
+37 verbose parsed url   auth: null,
+37 verbose parsed url   host: null,
+37 verbose parsed url   port: null,
+37 verbose parsed url   hostname: null,
+37 verbose parsed url   hash: null,
+37 verbose parsed url   search: null,
+37 verbose parsed url   query: null,
+37 verbose parsed url   pathname: '5.4.1',
+37 verbose parsed url   path: '5.4.1',
+37 verbose parsed url   href: '5.4.1' }
+38 verbose addNamed [ 'cordova', '5.4.1' ]
+39 verbose addNamed [ '5.4.1', '5.4.1' ]
+40 verbose cache add name="ionic" spec="1.7.12" args=["ionic","1.7.12"]
+41 verbose parsed url { protocol: null,
+41 verbose parsed url   slashes: null,
+41 verbose parsed url   auth: null,
+41 verbose parsed url   host: null,
+41 verbose parsed url   port: null,
+41 verbose parsed url   hostname: null,
+41 verbose parsed url   hash: null,
+41 verbose parsed url   search: null,
+41 verbose parsed url   query: null,
+41 verbose parsed url   pathname: '1.7.12',
+41 verbose parsed url   path: '1.7.12',
+41 verbose parsed url   href: '1.7.12' }
+42 verbose addNamed [ 'ionic', '1.7.12' ]
+43 verbose addNamed [ '1.7.12', '1.7.12' ]
+44 silly lockFile 109ffe8a-cordova-5-4-1 cordova@5.4.1
+45 verbose lock cordova@5.4.1 /home/anitatsai/.npm/109ffe8a-cordova-5-4-1.lock
+46 silly lockFile 5cb1d569-ionic-1-7-12 ionic@1.7.12
+47 verbose lock ionic@1.7.12 /home/anitatsai/.npm/5cb1d569-ionic-1-7-12.lock
+48 verbose registry.get https://registry.npmjs.org/cordova not expired, no request
+49 verbose registry.get https://registry.npmjs.org/ionic not expired, no request
+50 silly lockFile cd0be645-js-org-cordova-cordova-5-4-1-tgz https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz
+51 verbose lock https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz /home/anitatsai/.npm/cd0be645-js-org-cordova-cordova-5-4-1-tgz.lock
+52 verbose addRemoteTarball [ 'https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz',
+52 verbose addRemoteTarball   'bc56bc1d3c5387a7926408212dfbce59002f9d76' ]
+53 info retry fetch attempt 1 at 18:52:14
+54 verbose fetch to= /tmp/npm-6692-eqikthae/registry.npmjs.org/cordova/-/cordova-5.4.1.tgz
+55 http GET https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz
+56 silly lockFile 8fe8eb20-npmjs-org-ionic-ionic-1-7-12-tgz https://registry.npmjs.org/ionic/-/ionic-1.7.12.tgz
+57 verbose lock https://registry.npmjs.org/ionic/-/ionic-1.7.12.tgz /home/anitatsai/.npm/8fe8eb20-npmjs-org-ionic-ionic-1-7-12-tgz.lock
+58 verbose addRemoteTarball [ 'https://registry.npmjs.org/ionic/-/ionic-1.7.12.tgz',
+58 verbose addRemoteTarball   '87cdf5b9ff748009182a10c61bbc3a39a000fe59' ]
+59 info retry fetch attempt 1 at 18:52:14
+60 verbose fetch to= /tmp/npm-6692-eqikthae/registry.npmjs.org/ionic/-/ionic-1.7.12.tgz
+61 http GET https://registry.npmjs.org/ionic/-/ionic-1.7.12.tgz
+62 http 200 https://registry.npmjs.org/ionic/-/ionic-1.7.12.tgz
+63 http 200 https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz
+64 silly lockFile cd0be645-js-org-cordova-cordova-5-4-1-tgz https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz
+65 silly lockFile cd0be645-js-org-cordova-cordova-5-4-1-tgz https://registry.npmjs.org/cordova/-/cordova-5.4.1.tgz
+66 silly lockFile 109ffe8a-cordova-5-4-1 cordova@5.4.1
+67 silly lockFile 109ffe8a-cordova-5-4-1 cordova@5.4.1
+68 error Error: EACCES, mkdir '/home/anitatsai/.npm/cordova/5.4.1'
+68 error  { [Error: EACCES, mkdir '/home/anitatsai/.npm/cordova/5.4.1']
+68 error   errno: 3,
+68 error   code: 'EACCES',
+68 error   path: '/home/anitatsai/.npm/cordova/5.4.1' }
+69 error Please try running this command again as root/Administrator.
+70 error System Linux 3.19.0-31-generic
+71 error command "/usr/bin/nodejs" "/usr/bin/npm" "update" "-g" "cordova" "ionic"
+72 error cwd /home/anitatsai/Anita/WeGossip/fb_test2
+73 error node -v v0.10.25
+74 error npm -v 1.4.21
+75 error path /home/anitatsai/.npm/cordova/5.4.1
+76 error code EACCES
+77 error errno 3
+78 error stack Error: EACCES, mkdir '/home/anitatsai/.npm/cordova/5.4.1'
+79 verbose exit [ 3, true ]

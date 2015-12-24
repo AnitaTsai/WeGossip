@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapCtrl'])
+angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapCtrl' ,'starter.historyCtrl','starter.uploadPic','ngIOS9UIWebViewPatch' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -15,8 +15,9 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-
-    Parse.initialize("UPLMUZ0E5ru230VpEMBKTjfmBsv1vkQH2oEnpdy9", "jA2vO6HKMSMKFvCUkqiMgVvQSoM4DkVVNy6rskr6");
+    
+    Parse.initialize("0ekcDIcYCDRfF3rLy4yo5JVmqdOxPe7o4fyMCYCh", "HXaKOjKo77cU6SnC8tYdm5uECwDAqPbUPiAiOytd");
+    //Parse.initialize("UPLMUZ0E5ru230VpEMBKTjfmBsv1vkQH2oEnpdy9", "jA2vO6HKMSMKFvCUkqiMgVvQSoM4DkVVNy6rskr6");
 
     if(!(ionic.Platform.isIOS() || ionic.Platform.isAndroid())){
       window.fbAsyncInit = function() {
@@ -49,11 +50,11 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     controller:'LoginCtrl'
   })*/
   
-.state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/sidemenu.html',
-    controller: 'LoginCtrl'
+    
   })
 
   .state('authentication',{
@@ -67,11 +68,67 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
     templateUrl: 'templates/signup.html',
     controller: 'LoginCtrl'
   })
+  .state('forgetPassword', {
+    url: '/forgetPassword',
+    templateUrl: 'templates/forgetPassword.html',
+    controller: 'LoginCtrl'
+  })
  
  .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
+  })
+
+.state('app.profile', {
+    url: '/profile',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/profile.html',
+      }
+    }
+  })
+/*
+  .state('app.profile.upload_picture', {
+    url: '/upload_picture',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/upload_picture.html',
+      }
+    }
+  })
+*/
+.state('upload_picture', {
+    url: '/upload_picture',
+    templateUrl: 'templates/upload_picture.html',
+    controller: 'uploadPic'
+  })
+
+ .state('app.friends', {
+    url: '/friends',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/friends.html',
+      }
+    }
+  })
+ .state('app.history', {
+    cache: false,
+    url: '/history',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/history.html',
+      controller: 'historyCtrl'
+      }
+    }
+  })
+ .state('app.settings', {
+    url: '/settings',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/settings.html',
+      }
+    }
   })
   
   .state('app.main', {
@@ -82,7 +139,7 @@ angular.module('starter', ['ionic','ngCordova','starter.loginCtrl','starter.mapC
           controller: 'mapCtrl'
         }
       }
-    });
+  });
  /*
   .state('main', {
    url: '/main',
