@@ -1,0 +1,54 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content drag-content = "false">
+    <ion-nav-bar align-title="center" class="bar-calm nav-title-slide-ios7 bar-header ">
+      <ion-nav-back-button class="button-clear">
+        <i class="icon ion-ios7-arrow-forward"></i> back
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="primary">
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-funnel" men-toggle="right"></button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar bar-header bar-positive">
+      <h1 class="title">Side Menu</h1>
+
+    </ion-header-bar>
+    <ion-content class="has-header my-menu">
+    <ion-list>
+    <ion-item menu-close href="#/app/profile" class="button button-stable button-outline button-inline button-small"><img src="http://files.parsetfss.com/673d9c47-c4ac-4a19-925c-fb660920c983/tfss-71ed696c-f3a4-4d4e-9050-74c4ffe3e793-4QFr3V4lTMqv6OoAqeAY_user.png" width="30%" height="auto" style="width: 30%; height: auto; display : block;  margin-top:20px; margin-left: auto; margin-right: auto;"  ></ion-item>
+      
+      <ion-item menu-close href="#/app/main">
+        <i class="icon ion-home"></i>      
+          <b>Home</b>
+        </ion-item>
+        <ion-item menu-close href=" #/app/friends">
+          <i class="icon ion-person-stalker"></i>
+          <b>Friend</b>
+        </ion-item>
+        <ion-item menu-close href="#/app/history">
+          <i class="icon ion-speakerphone"></i>
+          <b>History</b>
+        </ion-item>
+        <ion-item menu-close href="#/app/settings">
+          <i class="icon ion-gear-a"></i>
+          <b>Settings</b>
+        </ion-item>
+        <ion-item menu-close href="">
+          <i class="icon ion-power"></i>
+          <b>Log out</b>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

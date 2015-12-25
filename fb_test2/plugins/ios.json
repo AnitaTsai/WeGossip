@@ -21,7 +21,19 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
                             "count": 1
                         },
                         {
@@ -51,17 +63,37 @@
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
-                            "count": 1
                         }
                     ]
                 }
             },
             "framework": {
                 "parents": {
+                    "CoreLocation.framework": [
+                        {
+                            "xml": false,
+                            "count": 2
+                        }
+                    ],
                     "CoreGraphics.framework": [
+                        {
+                            "xml": false,
+                            "count": 3
+                        }
+                    ],
+                    "ImageIO.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
+                    ],
+                    "AssetsLibrary.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "MobileCoreServices.framework": [
                         {
                             "xml": false,
                             "count": 1
@@ -90,17 +122,17 @@
                             "xml": true,
                             "count": 1
                         }
-                    ],
-                    "CoreLocation.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
                     ]
                 }
             },
             "*-Info.plist": {
                 "parents": {
+                    "NSLocationWhenInUseUsageDescription": [
+                        {
+                            "xml": "<string />",
+                            "count": 2
+                        }
+                    ],
                     "FacebookAppID": [
                         {
                             "xml": "<string>1481027875536884</string>",
@@ -118,12 +150,6 @@
                             "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb1481027875536884</string></array></dict></array>",
                             "count": 1
                         }
-                    ],
-                    "NSLocationWhenInUseUsageDescription": [
-                        {
-                            "xml": "<string />",
-                            "count": 1
-                        }
                     ]
                 }
             }
@@ -139,18 +165,21 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
         },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
+        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
         },
+        "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
+        },
         "phonegap-facebook-plugin": {
             "APP_ID": "1481027875536884",
             "APP_NAME": "myApp2",
-            "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
-        },
-        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.fbtest2975240"
         }
     },
