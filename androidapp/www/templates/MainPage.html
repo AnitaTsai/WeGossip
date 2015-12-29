@@ -4,22 +4,24 @@
 
     <ion-content padding="true" class="has-header" >
       
-     	  
+    
       <div class="map_container" data-tap-disabled="true">
         <google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" control="map.control">
           <markers models="map.markers" coords="'self'" options="'options'" isLabel='true'>
           </markers>
         </google-map>
       </div>  
-                 
       
       <div class="button-bar">
-    	  <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
-    	  <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
-    	  <button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
+        <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
+        <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
+        <button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
       </div>
+       
     
       
+
+         
 
     </ion-content>
 
