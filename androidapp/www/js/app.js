@@ -1,5 +1,5 @@
 /*Plugins 'google-maps'*/
-angular.module('starter', ['ionic','google-maps','starter.LoginControl','starter.MainControl'])
+angular.module('starter', ['ionic','google-maps','starter.LoginControl','starter.MainControl','starter.CameraCtrl'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -41,7 +41,7 @@ angular.module('starter', ['ionic','google-maps','starter.LoginControl','starter
   .state('UploadPicture', {
     url: '/UploadPicture',
     templateUrl: 'templates/UploadPicture.html',
-    //controller: 'CemeraControl'
+    controller: 'CameraCtrl'
   })
   .state('app.Profile', {
     url: '/Profile',
