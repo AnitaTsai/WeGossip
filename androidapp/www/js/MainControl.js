@@ -10,11 +10,12 @@ angular.module('starter.MainControl', [])
             options: {
                 animation: 1,
                 labelAnchor: "28 -5",
-                labelClass: 'markerlabel'    
+                labelClass: 'markerlabel'
+                
             },
             latitude: latitude,
             longitude: longitude,
-            id: ++markerId          
+            id: ++markerId
         };
         return marker;        
     }
@@ -66,10 +67,10 @@ angular.module('starter.MainControl', [])
 
 
 
-.controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout) {
+.controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout , myUser) {
 
     MarkerCreatorService.createByCoords(24.969417,121.267472, function (marker) {
-        marker.options.labelContent = 'Here am I';
+        marker.options.labelContent = 'Me';
         $scope.autentiaMarker = marker;
     });
         
@@ -128,35 +129,87 @@ angular.module('starter.MainControl', [])
      };
 
    $scope.showPopup = function() {
-          $scope.data = {};
+    $scope.data = {};
+    var userposition ;
+    /*
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          userposition = new Parse.GeoPoint({latitude: position.coords.latitude , longitude: position.coords.longitude});
+          alert(position.coords.latitude);
+          alert(position.coords.longitude);
+        });
+    } else {
+      alert('Unable to locate current position');
+    }
+    alert(userposition);
+    */
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'popup-template.html',
+      title: '新增訊息',
+      cssClass: 'newMessage',
+      scope: $scope,
+      buttons: [
+        { text: '取消' },
+        {
+          text: '<b>送出</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            return $scope.data.message;
+          }
+        },
+      ]
+    });
 
-              // An elaborate, custom popup
-              var myPopup = $ionicPopup.show({
-                 templateUrl: 'popup-template.html',
-                title: '新增訊息',
-                cssClass: 'newMessage',
-                scope: $scope,
-                buttons: [
-                  { text: '取消' },
-                  {
-                    text: '<b>送出</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
-                       return $scope.data.message;
-                    }
-                  },
-                ]
-              });
+    myPopup.then(function(res) {
 
-              myPopup.then(function(res) {
-                if (res==null){
-                    console.log('meesage is null');
-                    return ;
-                  }
-                   console.log('message', res);
-                    alert(res);
-              });
-    };
+      if (res==null){
+        console.log('meesage is null');
+        return ;
+      }
+
+      console.log('message', res);
+      alert(res);
+
+      MarkerCreatorService.createByCurrentLocation(function (marker) {
+        marker.options.labelContent = 'News!!';
+
+        
+        alert("marker positionx" + marker.latitude);
+        alert("marker positiony" + marker.longitude);
+        userposition = new Parse.GeoPoint({latitude: marker.latitude , longitude:marker.longitude});
+        alert(userposition);
+        
+
+        if(chattype == "resource"){
+          marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
+        }
+        if(chattype == "post"){
+          marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
+        }
+        if(chattype == "help"){
+          marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
+        }
+          
+        $scope.map.markers.push(marker);
+        refresh(marker);
+      });
+
+      var MessageObject = Parse.Object.extend("MessageObject");
+      var message = new MessageObject();
+      message.set("position", userposition);
+      message.set("username", myUser.getUserAccout()); //
+      message.set("message", res);
+      message.set("type", chattype);//
+      message.save(null, {
+        success: function (result){
+                     
+          alert("Success")
+        },error: function (error){
+          alert("ERROR")} 
+      });
+      
+    });
+  };
 
      $scope.active = 'resource';
   $scope.setActive = function(type) {

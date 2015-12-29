@@ -1,6 +1,24 @@
 angular.module('starter.LoginControl', [])
 
-.controller('LoginControl', function($scope) {
+.factory('myUser',function(){
+
+
+    var UserAccout= "";
+
+    return{
+        setUserAccout:function(str){
+            UserAccout = str;
+        },
+
+        getUserAccout:function(){
+            return UserAccout;
+        }
+    }
+
+
+})
+
+.controller('LoginControl', function($scope , myUser) {
 	$scope.data = {};
 
 	//登入
@@ -9,6 +27,7 @@ angular.module('starter.LoginControl', [])
       		success: function(user) {
       			var CurrentUser = user;
         		if (CurrentUser.get("verified")){
+              myUser.setUserAccout($scope.data.username);
         			alert("WelCome");
               setTimeout("location.href='#/app/MainPage'",0);
           			//setTimeout("location.href='#/MainPage'",0);
@@ -32,7 +51,6 @@ angular.module('starter.LoginControl', [])
             Parse.User.logIn($scope.data.username, $scope.data.password, {
                 success: function(user) {
                   CurrentUser = user;
-                  myFactoryService.setData($scope.data.username);
                 },error: function(user, error) {
                   alert("Erroe password or username!");
                 }
@@ -51,7 +69,8 @@ angular.module('starter.LoginControl', [])
     	if ($scope.data.emailverification==CurrentUser.get("verification")){
       		alert("success!!");
       		CurrentUser.set("verified",true);
-      		CurrentUser.save(null,{});  
+      		CurrentUser.save(null,{}); 
+          myUser.setUserAccout($scope.data.username); 
       		setTimeout("location.href='#/app/MainPage'",0);
     	}else{
       		alert("It is not verification number!!");
