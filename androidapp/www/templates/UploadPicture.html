@@ -7,12 +7,14 @@
     </ion-nav-bar>
 
     <ion-content padding="'true'" class="has-header">
-        <div>
-        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+        <div  style="text-align: center; ">
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
         </div>
-        <button ng-click = "takePhoto()" class="button button-calm button-outline" style="width:40%; margin:15px;">上傳頭貼</button>
-      	<a href="#/app/Profile" class="button button-calm button-outline " style="width:40%;margin:15px; ">取消</a>
-      	
+        <div  style="text-align: center; ">
+        <button ng-click = "takePhoto()" class="button button-positive" style="width:40%; margin:10px;">拍照</button>
+        <button ng-click = "choosePhoto()" class="button button-positive" style="width:40%; margin:10px;">選擇照片</button>
+      <a href="#/app/Profile" class="button button-dark button-outline"  style="width:80%;">返回</a>
+      </div>
     </ion-content>
 
 
