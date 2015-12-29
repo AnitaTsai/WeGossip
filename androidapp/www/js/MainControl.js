@@ -67,52 +67,52 @@ angular.module('starter.MainControl', [])
 
 .controller('MainControl', ['MarkerCreatorService', '$scope', function (MarkerCreatorService, $scope) {
 
-        MarkerCreatorService.createByCoords(40.454018, -3.509205, function (marker) {
-            marker.options.labelContent = 'Autentia';
-            $scope.autentiaMarker = marker;
-        });
+    MarkerCreatorService.createByCoords(24.969417,121.267472, function (marker) {
+        marker.options.labelContent = 'Here am I';
+        $scope.autentiaMarker = marker;
+    });
         
-        $scope.address = '';
+    $scope.address = '';
 
-        $scope.map = {
-            center: {
-                latitude: $scope.autentiaMarker.latitude,
-                longitude: $scope.autentiaMarker.longitude
-            },
-            zoom: 12,
-            markers: [],
-            control: {},
-            options: {
-                streetViewControl: false,
-                  zoomControl: false,
-                  mapTypeControl: false,
-                scrollwheel: false
-            }
-        };
+    $scope.map = {
+        center: {
+            latitude: $scope.autentiaMarker.latitude,
+            longitude: $scope.autentiaMarker.longitude
+        },
+        zoom: 17,
+        markers: [],
+        control: {},
+        options: {
+            streetViewControl: false,
+                zoomControl: false,
+                mapTypeControl: false,
+            scrollwheel: false
+        }
+    };
 
-        $scope.map.markers.push($scope.autentiaMarker);
+    $scope.map.markers.push($scope.autentiaMarker);
 
-        $scope.addCurrentLocation = function () {
-            MarkerCreatorService.createByCurrentLocation(function (marker) {
-                marker.options.labelContent = 'You´re here';
+    $scope.addCurrentLocation = function () {
+        MarkerCreatorService.createByCurrentLocation(function (marker) {
+            marker.options.labelContent = 'You´re here';
+            $scope.map.markers.push(marker);
+            refresh(marker);
+        });
+    };
+        
+    $scope.addAddress = function() {
+        var address = $scope.address;
+        if (address !== '') {
+            MarkerCreatorService.createByAddress(address, function(marker) {
                 $scope.map.markers.push(marker);
                 refresh(marker);
             });
-        };
-        
-        $scope.addAddress = function() {
-            var address = $scope.address;
-            if (address !== '') {
-                MarkerCreatorService.createByAddress(address, function(marker) {
-                    $scope.map.markers.push(marker);
-                    refresh(marker);
-                });
-            }
-        };
-
-        function refresh(marker) {
-            $scope.map.control.refresh({latitude: marker.latitude,
-                longitude: marker.longitude});
         }
+    };
 
-    }])
+    function refresh(marker) {
+        $scope.map.control.refresh({latitude: marker.latitude,
+        longitude: marker.longitude});
+    }
+
+}])
