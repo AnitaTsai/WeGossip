@@ -25,22 +25,24 @@ angular.module('starter.LoginControl', [])
 
   	//註冊
   	$scope.Register=function(){
-    	Parse.Cloud.run('register',{username:$scope.data.username,password:$scope.data.password,email:$scope.data.email},{
-      		success:function(result){
-        		alert(result);
-        		Parse.User.logIn($scope.data.username, $scope.data.password, {
-          			success: function(user) {
-            			CurrentUser = user;
-            			myFactoryService.setData($scope.data.username);
-          			},error: function(user, error) {
-            			alert("Erroe password or username!");
-          			}
-        		});
-        		setTimeout("location.href='#/Verification'",0);
-      		},error:function(error){
-        		alert(error);
-      		}
-    	});
+      if( (ValidateEmail($scope.data.email)) && (ValidatePWD($scope.data.password,$scope.data.confirm_password)) ){
+        Parse.Cloud.run('register',{username:$scope.data.username,password:$scope.data.password,email:$scope.data.email},{
+          success:function(result){
+            alert(result);
+            Parse.User.logIn($scope.data.username, $scope.data.password, {
+                success: function(user) {
+                  CurrentUser = user;
+                  myFactoryService.setData($scope.data.username);
+                },error: function(user, error) {
+                  alert("Erroe password or username!");
+                }
+            });
+            setTimeout("location.href='#/Verification'",0);
+          },error:function(error){
+            alert(error);
+          }
+        });
+      }
   	}
 
   	//驗證
@@ -50,7 +52,7 @@ angular.module('starter.LoginControl', [])
       		alert("success!!");
       		CurrentUser.set("verified",true);
       		CurrentUser.save(null,{});  
-      		setTimeout("location.href='#/MainPage'",0);
+      		setTimeout("location.href='#/app/MainPage'",0);
     	}else{
       		alert("It is not verification number!!");
     	}
