@@ -83,6 +83,9 @@ angular.module('starter.MainControl', [])
             markers: [],
             control: {},
             options: {
+                streetViewControl: false,
+                  zoomControl: false,
+                  mapTypeControl: false,
                 scrollwheel: false
             }
         };
