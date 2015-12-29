@@ -17,10 +17,7 @@
     background-image: none;
     border-bottom: none;
 }
-.button-bar{
-	 position: absolute;
-	 bottom: 2px;
-}
+
 .angular-google-map-container {
     position: absolute;
     display:block;
@@ -30,7 +27,16 @@
     left: 0;    
 }
 
+.newMessage .popup
+{
+  min-width: 80% !important;
+    height: 400px;
+}
 
+.newMessage .popup-title
+{
+  color:#0000FF;
+}
 
 
 

@@ -12,13 +12,23 @@
         </google-map>
       </div>  
       
-      <div class="button-bar">
+      <div class="button-bar" style=" position: absolute; bottom: 2px;">
         <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
         <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
         <button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
       </div>
        
-      
+      <script id="popup-template.html" type="text/ng-template">
+
+            <div class="button-bar">
+                <a class="button button-small" ng-class="{'button-positive': isActive('resource')}" ng-click="setActive('resource')">物資</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('post')}" ng-click="setActive('post')">通報</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('help')}" ng-click="setActive('help')">求助</a>
+             </div>
+        <p></p>
+        <textarea placeholder="輸入訊息..." style="width:280px;height:150px;background-color: #E8E8E8 " ng-model="data.message"></textarea>
+        <p></p>
+       </script>
 
          
 

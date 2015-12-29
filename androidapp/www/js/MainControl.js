@@ -1,3 +1,4 @@
+var chattype = "resource";
 angular.module('starter.MainControl', [])
 
 .factory('MarkerCreatorService', function () {
@@ -65,7 +66,7 @@ angular.module('starter.MainControl', [])
 
 
 
-.controller('MainControl', ['MarkerCreatorService', '$scope', function (MarkerCreatorService, $scope) {
+.controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout) {
 
     MarkerCreatorService.createByCoords(24.969417,121.267472, function (marker) {
         marker.options.labelContent = 'Here am I';
@@ -115,4 +116,68 @@ angular.module('starter.MainControl', [])
         longitude: marker.longitude});
     }
 
-}])
+    $scope.showAlert = function() {
+       var alertPopup = $ionicPopup.alert({
+         title: 'Don\'t eat that!',
+         template: 'It might taste good'
+       });
+
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
+
+   $scope.showPopup = function() {
+          $scope.data = {};
+
+              // An elaborate, custom popup
+              var myPopup = $ionicPopup.show({
+                 templateUrl: 'popup-template.html',
+                title: '新增訊息',
+                cssClass: 'newMessage',
+                scope: $scope,
+                buttons: [
+                  { text: '取消' },
+                  {
+                    text: '<b>送出</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                       return $scope.data.message;
+                    }
+                  },
+                ]
+              });
+
+              myPopup.then(function(res) {
+                if (res==null){
+                    console.log('meesage is null');
+                    return ;
+                  }
+                   console.log('message', res);
+                    alert(res);
+              });
+    };
+
+     $scope.active = 'resource';
+  $scope.setActive = function(type) {
+    if(type == "resource"){
+      alert("change type to resource");
+      chattype = type;
+      console.log(chattype);
+    }
+    if(type == "post"){
+      alert("change type to post");
+      chattype = type;
+      console.log(chattype);
+    }
+    if(type == "help"){
+      alert("change type to help");
+      chattype = type;
+      console.log(chattype);
+    }
+    $scope.active = type;
+  };
+  $scope.isActive = function(type) {
+    return type === $scope.active;
+  };  
+});
