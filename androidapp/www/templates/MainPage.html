@@ -1,0 +1,32 @@
+<!--googlemap-->
+<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBUMIcfRwkjLaMVbte4kk9_buYZ1PmPrHU&sensor=true"></script>-->
+<ion-view title="Home">
+
+    <ion-content padding="true" class="has-header" >
+      
+     	<div class="bar  bar-subheader bar-header " style=" text-align: center;">
+        <div class="button-bar">
+          <a class="button button-small button-light">Map</a>
+          <a class="button button-small button-light">List</a>
+        </div>
+      </div>
+      
+      <div class="map_container" >
+        <google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" control="map.control">
+          <markers models="map.markers" coords="'self'" options="'options'" isLabel='true'>
+          </markers>
+        </google-map>
+      </div>  
+                 
+      
+      <div class="button-bar">
+    	  <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
+    	  <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
+    	  <button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
+      </div>
+    
+      
+
+    </ion-content>
+
+</ion-view>
