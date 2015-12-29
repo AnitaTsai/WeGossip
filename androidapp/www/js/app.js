@@ -10,7 +10,7 @@ angular.module('starter', ['ionic','google-maps','starter.LoginControl','starter
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    Parse.initialize("0ekcDIcYCDRfF3rLy4yo5JVmqdOxPe7o4fyMCYCh", "HXaKOjKo77cU6SnC8tYdm5uECwDAqPbUPiAiOytd");
+    Parse.initialize("40TN82PIVbkEbpfSWxWeJbKGsxFwOGHVSX8quGxT", "pKIjQYUXzc0e2tBy4Vy0rmZWhbacSeeTvkhQ6EKE");
   });
 })
 
