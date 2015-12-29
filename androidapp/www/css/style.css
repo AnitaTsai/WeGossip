@@ -27,6 +27,20 @@
     left: 0;    
 }
 
+/*side menu*/
+.my-menu {
+  background-color:  #3366FF;
+}
+.my-menu .list {
+  background-color: transparent;
+}
+
+.my-menu .item, .my-menu .item-content, .my-menu .item-complex{
+  background-color: transparent;
+  color:    #FFFFFF ;
+  border-color: rgba(0,0,0,0);
+}
+
 .newMessage .popup
 {
   min-width: 80% !important;

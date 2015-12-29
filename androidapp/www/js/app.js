@@ -38,7 +38,19 @@ angular.module('starter', ['ionic','google-maps','starter.LoginControl','starter
     templateUrl: 'templates/Verification.html',
     controller: 'LoginControl'
   })
-  
+  .state('UploadPicture', {
+    url: '/UploadPicture',
+    templateUrl: 'templates/UploadPicture.html',
+    //controller: 'CemeraControl'
+  })
+  .state('app.Profile', {
+    url: '/Profile',
+    views:{
+      'menuContent':{
+      templateUrl: 'templates/Profile.html',
+      }
+    }
+  })  
   .state('app.MainPage', {
     url: '/MainPage',
     views: {
