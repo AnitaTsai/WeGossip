@@ -1,5 +1,5 @@
 /*Plugins 'google-maps'*/
-angular.module('starter', ['ionic','google-maps','starter.LoginControl','starter.MainControl','starter.CameraCtrl'])
+angular.module('starter', ['ionic','uiGmapgoogle-maps','starter.LoginControl','starter.MainControl','starter.CameraCtrl'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

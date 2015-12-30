@@ -5,22 +5,7 @@
     <ion-content padding="true" class="has-header" >
       
     
-      <div class="map_container" data-tap-disabled="true">
-        <google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" control="map.control">     
-
-          <markers models="map.markers" coords="'self'" options="'options'" isLabel='true' >
-            
-            <!--
-            <window isIconVisibleOnClick="true">
-              <p>
-                {{message}}
-              </p>
-            </window>
-            -->
-          </markers>
-          
-        </google-map>
-      </div>  
+      <ui-gmap-google-map center="map.center" zoom="map.zoom"></ui-gmap-google-map>
       
       <div class="button-bar" style=" position: absolute; bottom: 2px;">
         <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
