@@ -78,12 +78,12 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
     $scope.showAlert = function() {
        var alertPopup = $ionicPopup.alert({
-         title: 'Don\'t eat that!',
-         template: 'It might taste good'
+         title: '實用災情通報電話',
+         template: '桃園縣應變中心: (03)3377662 桃園市公所: (03)3349581'
        });
 
        alertPopup.then(function(res) {
-         console.log('Thank you for not eating my delicious ice cream cone');
+         //console.log('Thank you for not eating my delicious ice cream cone');
        });
      };
 

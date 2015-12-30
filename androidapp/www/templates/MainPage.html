@@ -1,6 +1,6 @@
 <!--googlemap-->
 <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBUMIcfRwkjLaMVbte4kk9_buYZ1PmPrHU&sensor=true"></script>-->
-<ion-view title="Home">
+<ion-view title="MyCommunity">
 
     <ion-content padding="true" class="has-header" >
       
@@ -21,11 +21,40 @@
 
       </div>
 
+<<<<<<< HEAD
+=======
+      <!-- refresh-->
+        <button class="float-button2" ng-click="RefreshData()">
+          <span class="height-fix2">
+          <a class="content2">
+          <i class="ion-refresh"> </i>
+          </a>
+          </span>
+        </button>  
+
+        <!-- locate school -->
+        <button class="float-button1" ng-click="centerOnYZU()">
+          <span class="height-fix1">
+          <a class="content1">
+          <i class="ion-ios-home"> </i>
+          </a>
+          </span>
+        </button>
+
+        <!-- locate myself -->
+        <button class="float-button" ng-click="centerOnMe()">
+          <span class="height-fix">
+          <a class="content">
+          <i class="ion-ios-location"> </i>
+          </a>
+          </span>
+        </button>                   
+>>>>>>> 8ed72d552aa354bd7b40654d34f2ff9e07944458
 
       <div class="button-bar" style=" position: absolute; bottom: 2px;">
-        <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
-        <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
-        <button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
+        <button class="button button-icon icon ion-speakerphone"  ng-click=""></button>
+        <button class="button button-icon icon ion-compose" ng-click="showPopup()"></button>
+        <button class="button button-icon icon ion-ios-telephone" ng-click="showAlert()"></button>
       </div>
        
       <script id="popup-template.html" type="text/ng-template">

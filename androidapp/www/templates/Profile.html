@@ -1,11 +1,11 @@
-<ion-view title="Profile">
+<ion-view title="個人資料">
     <ion-content padding="'true'" class="has-header">
         <ion-list></ion-list>
         <ion-list>
             <ion-item menu-close="" class="item-thumbnail-left" href="#/UploadPicture">
-                <img>
-                <h2>姓名</h2>
-                <p>帳號</p>
+                <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+                <h2>{{UserName}}</h2>
+                <p>{{UserEmail}}</p>
             </ion-item>
         </ion-list>
         <ion-list></ion-list>
