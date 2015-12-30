@@ -34,7 +34,10 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       latitude:24.969417,
       longitude:121.267472,
       id:100,
-      title:"fuck"
+      title:"fuck",
+      options:{
+        icon:'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png'
+      },
     };
     $scope.Markers.push(marker);
 
@@ -51,22 +54,24 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             latitude: results[i].get('position')["_latitude"],
             longitude: results[i].get('position')["_longitude"],
             id:ID,
-            title: results[i].get('message')
+            title: results[i].get('message'),
+            options:{
+              icon:''
+            },
           };
           ID++;
 
-            /*
-            if(results[i].get('type') == "resource"){
-              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
-            }
-            if(results[i].get('type') == "post"){
-              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
             
-            }
-            if(results[i].get('type') == "help"){
-              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
-            }
-            */
+          if(results[i].get('type') == "resource"){
+            marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
+          }
+          if(results[i].get('type') == "post"){
+            marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png'; 
+          }
+          if(results[i].get('type') == "help"){
+            marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
+          }
+            
 
           $scope.Markers.push(marker);
         }
@@ -92,22 +97,25 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
               latitude: results[i].get('position')["_latitude"],
               longitude: results[i].get('position')["_longitude"],
               id:ID,
-              title: results[i].get('message')
+              title: results[i].get('message'),
+              options:{
+                icon:''
+              },
             };
             ID++;
 
-              /*
-              if(results[i].get('type') == "resource"){
-                marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
-              }
-              if(results[i].get('type') == "post"){
-                marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
               
-              }
-              if(results[i].get('type') == "help"){
-                marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
-              }
-              */
+            if(results[i].get('type') == "resource"){
+              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
+            }
+            if(results[i].get('type') == "post"){
+              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
+              
+            }
+            if(results[i].get('type') == "help"){
+              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
+            }
+              
 
             $scope.Markers.push(marker);
           }
@@ -125,7 +133,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           $scope.map.control.refresh({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
         }, function(error) {
           alert('Unable to get location: ' + error.message);
-        });
+      });
     }
     $scope.centerOnYZU = function()
     {
@@ -227,9 +235,21 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             latitude:positionx,
             longitude: positiony,
             id:ID,
-            title: res
+            title: res,
+            options:{
+              icon:''
+            },
           };
           ID++;
+          if(chattype == "resource"){
+            marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
+          }
+          if(chattype == "post"){
+            marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png'; 
+          }
+          if(chattype == "help"){
+            marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
+          }
           $scope.map.control.refresh({latitude: positionx, longitude: positiony});
           $scope.Markers.push(marker);
 
