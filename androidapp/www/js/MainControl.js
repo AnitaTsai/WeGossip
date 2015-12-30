@@ -1,6 +1,8 @@
 var chattype = "resource";
 var uploadpic = "";
 var ID = 0;
+var positionx ;
+var positiony ;
 angular.module('starter.MainControl', ['ionic','ngCordova'])
 
 
@@ -16,16 +18,28 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
         control: {},
         refresh:{},
         zoom: 17 
-      };
+    };
 
     $scope.User = {
-      coords: { latitude: 24.969417, longitude: 121.267472 },
+      coords: { latitude: 24.969417, longitude: 121.267472},
       id : -1,
       options:{
         animation: 1,
         labelContent : 'Me',
       },
     };
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        alert(position.coords.latitude);
+        alert(position.coords.longitude);
+        $scope.User.coords.latitude = position.coords.latitude ;
+        $scope.User.coords.longitude = position.coords.longitude;
+      }) 
+    }else {
+      alert('Unable to locate current position');
+    }
+
+    
 
     /*
     $scope.marker = {
@@ -145,10 +159,10 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             coords: { latitude: pos.coords.latitude, longitude: pos.coords.longitude },
             id : -1,
             options:{
-            animation: 1,
-            labelContent : 'Me',
-          },
-    };
+              animation: 1,
+              labelContent : 'Me',
+            },
+          };
         }, function(error) {
           alert('Unable to get location: ' + error.message);
       });
@@ -229,8 +243,6 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
       var MessageObject = Parse.Object.extend("MessageObject");
       var message = new MessageObject();
-      var positionx ;
-      var positiony ;
 
 
       navigator.geolocation.getCurrentPosition(function(pos) {
