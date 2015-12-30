@@ -1,5 +1,6 @@
 var chattype = "resource";
 var uploadpic = "";
+var ID = 0;
 angular.module('starter.MainControl', ['ionic','ngCordova'])
 
 
@@ -49,9 +50,10 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           var marker ={
             latitude: results[i].get('position')["_latitude"],
             longitude: results[i].get('position')["_longitude"],
-            id:i,
+            id:ID,
             title: results[i].get('message')
           };
+          ID++;
 
             /*
             if(results[i].get('type') == "resource"){
@@ -67,11 +69,6 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             */
 
           $scope.Markers.push(marker);
-
-            
-            
-          
-          
         }
       },
       error: function(error) {
@@ -165,29 +162,17 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
       var MessageObject = Parse.Object.extend("MessageObject");
       var message = new MessageObject();
+      var positionx ;
+      var positiony ;
 
-      MarkerCreatorService.createByCurrentLocation(function (marker) {
-        marker.options.labelContent = 'News!!';
 
-        
-        message.set("position", new Parse.GeoPoint({latitude: marker.latitude , longitude:marker.longitude}));
-        
-
-        if(chattype == "resource"){
-          marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
-        }
-        if(chattype == "post"){
-          marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
-        }
-        if(chattype == "help"){
-          marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
-        }
-          
-        $scope.map.markers.push(marker);
-        refresh(marker);
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        message.set("position", new Parse.GeoPoint({latitude: pos.coords.latitude , longitude:pos.coords.longitude}));
+        positionx = pos.coords.latitude;
+        positiony = pos.coords.longitude;
+      }, function(error) {
+        alert('Unable to get location: ' + error.message);
       });
-
-      
       
       message.set("username", myUser.getUserAccout()); //
       message.set("message", res);
@@ -195,9 +180,18 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
        var parseFile = new Parse.File('messagePhoto.png',{base64:uploadpic});                    
       message.set("photo",parseFile);
       message.save(null, {
-        success: function (result){
-                     
-          alert("Success")
+        success: function (result){        
+          alert("Success");
+          var marker ={
+            latitude:positionx,
+            longitude: positiony,
+            id:ID,
+            title: res
+          };
+          ID++;
+          $scope.map.control.refresh({latitude: positionx, longitude: positiony});
+          $scope.Markers.push(marker);
+
         },error: function (error){
           alert("ERROR")} 
       });
