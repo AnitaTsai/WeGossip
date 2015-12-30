@@ -30,4 +30,8 @@ angular.module('starter.ProfileCtrl', ['ionic'] )
 	      }
 	    });
 
+ 	$scope.SaveData = function()
+ 	{
+ 		
+ 	};
  });
