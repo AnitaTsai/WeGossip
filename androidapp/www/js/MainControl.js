@@ -16,6 +16,8 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
         refresh:{},
         zoom: 17 
       };
+
+    /*
     $scope.marker = {
       coords: { latitude: 24.969417, longitude: 121.267472 },
       id : 1,
@@ -24,6 +26,59 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       },
     };
     $scope.title = "Window Title!";
+    */
+    $scope.Markers=[];
+
+    var marker ={
+      latitude:24.969417,
+      longitude:121.267472,
+      id:100,
+      title:"fuck"
+    };
+    $scope.Markers.push(marker);
+
+
+    var MessageObject = Parse.Object.extend("MessageObject");
+    var query = new  Parse.Query(MessageObject); 
+    query.find({
+      success: function(results) {
+
+        for (var i = 0; i < results.length; i++) {
+          
+
+          var marker ={
+            latitude: results[i].get('position')["_latitude"],
+            longitude: results[i].get('position')["_longitude"],
+            id:i,
+            title: results[i].get('message')
+          };
+
+            /*
+            if(results[i].get('type') == "resource"){
+              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
+            }
+            if(results[i].get('type') == "post"){
+              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
+            
+            }
+            if(results[i].get('type') == "help"){
+              marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
+            }
+            */
+
+          $scope.Markers.push(marker);
+
+            
+            
+          
+          
+        }
+      },
+      error: function(error) {
+       alert("Error: " + error.code + " " + error.message);
+      }
+    });
+    
 
 
     $scope.centerOnMe = function()
