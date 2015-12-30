@@ -72,13 +72,23 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       success: function(results) {
 
         for (var i = 0; i < results.length; i++) {
-          
-
+          var messagetype = "resource";
+          if(results[i].get('type') == "resource"){
+            messagetype =  '<h1 style="color:blue;">物資</h1>';
+          }
+          if(results[i].get('type') == "post"){
+            messagetype = '<h1 style="color:green;">通報</h1>';
+          }
+          if(results[i].get('type') == "help"){
+            messagetype = '<h1 style="color:red;">求助</h1>';
+          }
           var marker ={
-            latitude: results[i].get('position')["_latitude"],
-            longitude: results[i].get('position')["_longitude"],
+            latitude: results[i].get('position')['_latitude'],
+            longitude: results[i].get('position')['_longitude'],
             id:ID,
-            title: results[i].get('message'),
+            title: messagetype  + '<p>來自: ' +results[i].get('username') + '</p>' 
+                                               + '<p>內容: ' + results[i].get('message') + '</p>'
+                                               + '<img src="' + results[i].get('photo')['_url'] + '"style="width:150px;height:150px;">',
             options:{
               icon:''
             },
@@ -115,13 +125,24 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
         success: function(results) {
 
           for (var i = 0; i < results.length; i++) {
-            
+            var messagetype = "resource";
+              if(results[i].get('type') == "resource"){
+                messagetype =  '<h1 style="color:blue;">物資</h1>';
+              }
+              if(results[i].get('type') == "post"){
+                messagetype = '<h1 style="color:green;">通報</h1>';
+              }
+              if(results[i].get('type') == "help"){
+                messagetype = '<h1 style="color:red;">求助</h1>';
+              }
 
             var marker ={
-              latitude: results[i].get('position')["_latitude"],
-              longitude: results[i].get('position')["_longitude"],
+              latitude: results[i].get('position')['_latitude'],
+              longitude: results[i].get('position')['_longitude'],
               id:ID,
-              title: results[i].get('message'),
+              title: messagetype  + '<p>來自: ' +results[i].get('username') + '</p>' 
+                                               + '<p>內容: ' + results[i].get('message') + '</p>'
+                                              + '<img src="' + results[i].get('photo')['_url'] + '"style="width:150px;height:150px;">',
               options:{
                 icon:''
               },
