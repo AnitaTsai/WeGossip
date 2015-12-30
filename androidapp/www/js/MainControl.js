@@ -1,5 +1,6 @@
 var chattype = "resource";
-angular.module('starter.MainControl', [])
+var uploadpic = "";
+angular.module('starter.MainControl', ['ionic','ngCordova'])
 
 .factory('MarkerCreatorService', function () {
 
@@ -67,7 +68,7 @@ angular.module('starter.MainControl', [])
 
 
 
-.controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout , myUser) {
+.controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout ,$cordovaCamera,myUser) {
 
     MarkerCreatorService.createByCoords(24.969417,121.267472, function (marker) {
         marker.options.labelContent = 'Me';
@@ -116,6 +117,48 @@ angular.module('starter.MainControl', [])
         $scope.map.control.refresh({latitude: marker.latitude,
         longitude: marker.longitude});
     }
+
+    $scope.imgURI = '';
+      $scope.takePhoto = function () {
+        alert("mainPhoto");
+                  var options = {
+                    destinationType: Camera.DestinationType.DATA_URL,
+                    allowEdit: true,
+                    targetWidth: 200,
+                    targetHeight: 200,
+                    encodingType: Camera.EncodingType.PNG
+                };
+   
+                   $cordovaCamera.getPicture(options)
+                   .then(function (data) {
+                    //  alert("getPicture");
+                      console.log('camera data: ' + angular.toJson(data));
+                        $scope.imgURI = "data:image/png;base64," + data;
+                        uploadpic = data;
+                    }, function (err) {
+                        // An error occured. Show a message to the user
+                        alert("error");
+                    });
+      }
+
+      /*function uploadPhoto(){
+                    var currentUser = myUser.getUserAccout();
+                    var post = Parse.Object.extend("ProfilePictures");                    
+                    var newPost = new post();
+                    newPost.set("username",currentUser);      
+                    var parseFile = new Parse.File('mypic.png',{base64:uploadpic});                    
+                    newPost.set("profilepic",parseFile);
+                    newPost.save(null,{
+                                       success: function(){
+                                           // do whatever
+                                           alert("success");
+                                         },
+                                    error: function(error){
+                                        // do whatever 
+                                            alert(error);
+                                        }
+                                    });
+      }*/
 
     $scope.showAlert = function() {
        var alertPopup = $ionicPopup.alert({
@@ -200,6 +243,8 @@ angular.module('starter.MainControl', [])
       message.set("username", myUser.getUserAccout()); //
       message.set("message", res);
       message.set("type", chattype);//
+       var parseFile = new Parse.File('messagePhoto.png',{base64:uploadpic});                    
+      message.set("photo",parseFile);
       message.save(null, {
         success: function (result){
                      
