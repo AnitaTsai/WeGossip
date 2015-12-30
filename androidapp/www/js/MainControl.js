@@ -76,6 +76,47 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       }
     });
     
+    $scope.RefreshData = function(){
+      $scope.Markers = [];
+      ID = 0;
+
+      var MessageObject = Parse.Object.extend("MessageObject");
+      var query = new  Parse.Query(MessageObject); 
+      query.find({
+        success: function(results) {
+
+          for (var i = 0; i < results.length; i++) {
+            
+
+            var marker ={
+              latitude: results[i].get('position')["_latitude"],
+              longitude: results[i].get('position')["_longitude"],
+              id:ID,
+              title: results[i].get('message')
+            };
+            ID++;
+
+              /*
+              if(results[i].get('type') == "resource"){
+                marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
+              }
+              if(results[i].get('type') == "post"){
+                marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
+              
+              }
+              if(results[i].get('type') == "help"){
+                marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png';
+              }
+              */
+
+            $scope.Markers.push(marker);
+          }
+        },
+        error: function(error) {
+         alert("Error: " + error.code + " " + error.message);
+        }
+      });
+    }
 
 
     $scope.centerOnMe = function()
