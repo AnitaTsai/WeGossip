@@ -18,6 +18,15 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
         zoom: 17 
       };
 
+    $scope.User = {
+      coords: { latitude: 24.969417, longitude: 121.267472 },
+      id : -1,
+      options:{
+        animation: 1,
+        labelContent : 'Me',
+      },
+    };
+
     /*
     $scope.marker = {
       coords: { latitude: 24.969417, longitude: 121.267472 },
@@ -28,19 +37,20 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
     };
     $scope.title = "Window Title!";
     */
-    $scope.Markers=[];
 
+    $scope.Markers=[];
+    /*
     var marker ={
       latitude:24.969417,
       longitude:121.267472,
       id:100,
-      title:"fuck",
       options:{
-        icon:'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png'
+        animation: 1,
+        labelContent : 'Me',
       },
     };
     $scope.Markers.push(marker);
-
+    */
 
     var MessageObject = Parse.Object.extend("MessageObject");
     var query = new  Parse.Query(MessageObject); 
@@ -131,6 +141,14 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
     {
        navigator.geolocation.getCurrentPosition(function(pos) {
           $scope.map.control.refresh({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
+          $scope.User = {
+            coords: { latitude: pos.coords.latitude, longitude: pos.coords.longitude },
+            id : -1,
+            options:{
+            animation: 1,
+            labelContent : 'Me',
+          },
+    };
         }, function(error) {
           alert('Unable to get location: ' + error.message);
       });
