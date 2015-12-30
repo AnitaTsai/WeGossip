@@ -7,6 +7,34 @@
     <div  data-tap-disabled="true">
       <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options"></ui-gmap-google-map>
       </div>
+
+      <!-- refresh-->
+        <button class="float-button2" ng-click="RefreshData()">
+          <span class="height-fix2">
+          <a class="content2">
+          <i class="ion-refresh"> </i>
+          </a>
+          </span>
+        </button>  
+
+        <!-- locate school -->
+        <button class="float-button1" ng-click="centerOnYZU()">
+          <span class="height-fix1">
+          <a class="content1">
+          <i class="ion-ios-home"> </i>
+          </a>
+          </span>
+        </button>
+
+        <!-- locate myself -->
+        <button class="float-button" ng-click="centerOnMe()">
+          <span class="height-fix">
+          <a class="content">
+          <i class="ion-ios-location"> </i>
+          </a>
+          </span>
+        </button>                   
+
       <div class="button-bar" style=" position: absolute; bottom: 2px;">
         <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
         <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
