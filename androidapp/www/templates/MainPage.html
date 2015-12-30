@@ -34,6 +34,11 @@
         <p></p>
         <textarea placeholder="輸入訊息..." style="width:280px;height:150px;background-color: #E8E8E8 " ng-model="data.message"></textarea>
         <p></p>
+        </div>
+       <div style="text-align: center;">
+         <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+         <a class="button button-icon icon ion-camera" ng-click = "takePhoto()"></a>
+        </div>
        </script>
 
          
