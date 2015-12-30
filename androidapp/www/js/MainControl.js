@@ -3,19 +3,19 @@ var uploadpic = "";
 angular.module('starter.MainControl', ['ionic','ngCordova'])
 
 
-.controller('MainControl', function ( $scope, $ionicPopup, $timeout ,$cordovaCamera,myUser) {
-
-    $scope.map = { 
-      center: { latitude: 24.969417, longitude: 121.267472 },
+.controller('MainControl', function ( $scope, $ionicPopup, $cordovaGeolocation,$timeout ,$cordovaCamera,myUser) {
+    $scope.map = {  
+      center: { latitude: 24.969417, longitude: 121.267472},
       options: {
         streetViewControl: false,
         zoomControl: false,
         mapTypeControl: false,
         scrollwheel: true //滾輪
         },
-      zoom: 17 
-    };
-
+        control: {},
+        refresh:{},
+        zoom: 17 
+      };
     $scope.marker = {
       coords: { latitude: 24.969417, longitude: 121.267472 },
       id : 1,
@@ -26,8 +26,18 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
     $scope.title = "Window Title!";
 
 
-
-
+    $scope.centerOnMe = function()
+    {
+       navigator.geolocation.getCurrentPosition(function(pos) {
+          $scope.map.control.refresh({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
+        }, function(error) {
+          alert('Unable to get location: ' + error.message);
+        });
+    }
+    $scope.centerOnYZU = function()
+    {
+        $scope.map.control.refresh({latitude: 24.969417, longitude: 121.267472});
+    }
 
     $scope.onClick = function(marker, eventName, model) {
       console.log("Clicked!");
@@ -57,25 +67,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
                     });
       }
 
-      /*function uploadPhoto(){
-                    var currentUser = myUser.getUserAccout();
-                    var post = Parse.Object.extend("ProfilePictures");                    
-                    var newPost = new post();
-                    newPost.set("username",currentUser);      
-                    var parseFile = new Parse.File('mypic.png',{base64:uploadpic});                    
-                    newPost.set("profilepic",parseFile);
-                    newPost.save(null,{
-                                       success: function(){
-                                           // do whatever
-                                           alert("success");
-                                         },
-                                    error: function(error){
-                                        // do whatever 
-                                            alert(error);
-                                        }
-                                    });
-      }*/
-
+     
     $scope.showAlert = function() {
        var alertPopup = $ionicPopup.alert({
          title: '實用災情通報電話',
