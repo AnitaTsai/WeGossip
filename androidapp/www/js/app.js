@@ -1,5 +1,5 @@
 /*Plugins 'google-maps'*/
-angular.module('starter', ['ionic','uiGmapgoogle-maps','starter.LoginControl','starter.MainControl','starter.CameraCtrl'])
+angular.module('starter', ['ionic','uiGmapgoogle-maps','starter.LoginControl','starter.MainControl','starter.CameraCtrl','starter.ProfileCtrl'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -48,6 +48,7 @@ angular.module('starter', ['ionic','uiGmapgoogle-maps','starter.LoginControl','s
     views:{
       'menuContent':{
       templateUrl: 'templates/Profile.html',
+      controller: 'ProfileCtrl'
       }
     }
   })  
