@@ -134,7 +134,6 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       }
     });
     
-    
 
     $scope.addCurrentLocation = function () {
         MarkerCreatorService.createByCurrentLocation(function (marker) {
@@ -241,11 +240,14 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       console.log('message', res);
       alert(res);
 
+      var MessageObject = Parse.Object.extend("MessageObject");
+      var message = new MessageObject();
+
       MarkerCreatorService.createByCurrentLocation(function (marker) {
         marker.options.labelContent = 'News!!';
 
         
-        
+        message.set("position", new Parse.GeoPoint({latitude: marker.latitude , longitude:marker.longitude}));
         var latitude= marker.latitude;
         var longitude= marker.longitude;   
         alert("marker positionx" + latitude);
@@ -268,9 +270,8 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
         refresh(marker);
       });
 
-      var MessageObject = Parse.Object.extend("MessageObject");
-      var message = new MessageObject();
-      message.set("position", UserPosition);
+      
+      
       message.set("username", myUser.getUserAccout()); //
       message.set("message", res);
       message.set("type", chattype);//
