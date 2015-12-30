@@ -5,7 +5,16 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
 .controller('MainControl', function ( $scope, $ionicPopup, $timeout ,$cordovaCamera,myUser) {
 
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    $scope.map = { 
+      center: { latitude: 24.969417, longitude: 121.267472 },
+      options: {
+            streetViewControl: false,
+                zoomControl: false,
+                mapTypeControl: false,
+            scrollwheel: false
+        },
+       zoom: 17 
+    };
     $scope.imgURI = '';
       $scope.takePhoto = function () {
         alert("mainPhoto");

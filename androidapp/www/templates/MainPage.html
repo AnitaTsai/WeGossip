@@ -4,9 +4,9 @@
 
     <ion-content padding="true" class="has-header" >
       
-    
-      <ui-gmap-google-map center="map.center" zoom="map.zoom"></ui-gmap-google-map>
-      
+    <div  data-tap-disabled="true">
+      <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options"></ui-gmap-google-map>
+      </div>
       <div class="button-bar" style=" position: absolute; bottom: 2px;">
         <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
         <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
