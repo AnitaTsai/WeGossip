@@ -68,11 +68,8 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
 
 
-<<<<<<< HEAD
-.controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout ,$compile, myUser) {
-=======
+
 .controller('MainControl', function ( $scope,MarkerCreatorService, $ionicPopup, $timeout ,$cordovaCamera,myUser) {
->>>>>>> 7372eef5bda6c00bc5ed4df9281309e3a32205a5
 
     MarkerCreatorService.createByCoords(24.969417,121.267472, function (marker) {
         marker.options.labelContent = 'Yuan Ze';
