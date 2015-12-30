@@ -8,13 +8,32 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
     $scope.map = { 
       center: { latitude: 24.969417, longitude: 121.267472 },
       options: {
-            streetViewControl: false,
-                zoomControl: false,
-                mapTypeControl: false,
-            scrollwheel: false
+        streetViewControl: false,
+        zoomControl: false,
+        mapTypeControl: false,
+        scrollwheel: true //滾輪
         },
-       zoom: 17 
+      zoom: 17 
     };
+
+    $scope.marker = {
+      coords: { latitude: 24.969417, longitude: 121.267472 },
+      id : 1,
+      options:{
+        icon:'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png'
+      },
+    };
+    $scope.title = "Window Title!";
+
+
+
+
+
+    $scope.onClick = function(marker, eventName, model) {
+      console.log("Clicked!");
+      model.show = !model.show;
+    };
+
     $scope.imgURI = '';
       $scope.takePhoto = function () {
         alert("mainPhoto");
@@ -70,7 +89,6 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
    $scope.showPopup = function() {
     $scope.data = {};
-    var UserPosition;
     var myPopup = $ionicPopup.show({
       templateUrl: 'popup-template.html',
       title: '新增訊息',
@@ -106,12 +124,6 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
         
         message.set("position", new Parse.GeoPoint({latitude: marker.latitude , longitude:marker.longitude}));
-        var latitude= marker.latitude;
-        var longitude= marker.longitude;   
-        alert("marker positionx" + latitude);
-        alert("marker positiony" + longitude);
-        UserPosition = new Parse.GeoPoint({latitude: marker.latitude , longitude:marker.longitude});
-        alert(UserPosition);
         
 
         if(chattype == "resource"){
