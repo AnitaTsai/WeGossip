@@ -7,7 +7,13 @@
     
       <div class="map_container" data-tap-disabled="true">
         <google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" control="map.control">
-          <markers models="map.markers" coords="'self'" options="'options'" isLabel='true'>
+          <markers models="map.markers" coords="'self'" options="'options'" isLabel='true' >
+            <window isIconVisibleOnClick="true">
+              <p>
+                
+                {{message}}
+              </p>
+            </window>
           </markers>
         </google-map>
       </div>  
