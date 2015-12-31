@@ -30,8 +30,8 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
     };
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        alert(position.coords.latitude);
-        alert(position.coords.longitude);
+        //alert(position.coords.latitude);
+        //alert(position.coords.longitude);
         $scope.User.coords.latitude = position.coords.latitude ;
         $scope.User.coords.longitude = position.coords.longitude;
       }) 
