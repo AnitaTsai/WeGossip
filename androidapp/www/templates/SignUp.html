@@ -1,6 +1,6 @@
-<ion-view title="Sign Up">
+<ion-view title="註冊">
 
-    <ion-nav-bar align-title="center" class="bar-calm nav-title-slide-ios7">
+    <ion-nav-bar align-title="center" class="bar-dark nav-title-slide-ios7">
       <ion-nav-back-button class="button-clear">
         <i class="ion-arrow-left-c"></i> Back
       </ion-nav-back-button>
@@ -10,23 +10,23 @@
         <form>
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">Username</span>
+                    <span class="input-label">帳號</span>
                     <input type="text" placeholder="enter username" ng-model="data.username">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Email</span>
-                    <input type="text" placeholder="YZU mail" ng-model="data.email">
+                    <input type="text" placeholder="gmail" ng-model="data.email">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Password</span>
+                    <span class="input-label">密碼</span>
                     <input type="password" placeholder="At least 6 characters" ng-model="data.password">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Confirm Password</span>
+                    <span class="input-label">確認密碼</span>
                     <input type="password" placeholder=" " ng-model="data.confirm_password">
                 </label>
             </ion-list>
-            <button class="button button-stable button-block" ng-click="Register()">Done</button>
+            <button class="button button-full button-positive" ng-click="Register()">完成</button>
         </form>
     </ion-content>
 </ion-view>

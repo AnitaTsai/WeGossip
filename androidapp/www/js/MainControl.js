@@ -186,7 +186,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
     $scope.imgURI = '';
       $scope.takePhoto = function () {
-        alert("mainPhoto");
+       // alert("mainPhoto");
                   var options = {
                     destinationType: Camera.DestinationType.DATA_URL,
                     allowEdit: true,
@@ -270,11 +270,25 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       message.save(null, {
         success: function (result){        
           alert("Success");
+
+           var messagetype = "resource";
+              if(chattype == "resource"){
+                messagetype =  '<h1 style="color:blue;">物資</h1>';
+              }
+              if(chattype== "post"){
+                messagetype = '<h1 style="color:green;">通報</h1>';
+              }
+              if(chattype == "help"){
+                messagetype = '<h1 style="color:red;">求助</h1>';
+              }
+              //<img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
           var marker ={
             latitude:positionx,
             longitude: positiony,
             id:ID,
-            title: res,
+            title: messagetype  + '<p>來自: ' +myUser.getUserAccout() + '</p>' 
+                                               + '<p>內容: ' + res + '</p>'
+                                              + '<img src="' + $scope.imgURI + '"style="width:150px;height:150px;">',
             options:{
               icon:''
             },

@@ -2,6 +2,7 @@ angular.module('starter.ProfileCtrl', ['ionic'] )
 
  .controller('ProfileCtrl', function($scope,myUser) 
  {
+ 	$scope.data = {};
  	var currentUser = myUser.getUserAccout();
  	$scope.UserName = currentUser;
  	
@@ -17,8 +18,5 @@ angular.module('starter.ProfileCtrl', ['ionic'] )
 	      }
 	    });
 
- 	$scope.SaveData = function()
- 	{
- 		
- 	};
+ 	
  });

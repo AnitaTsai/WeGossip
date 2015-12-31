@@ -28,7 +28,7 @@ angular.module('starter.LoginControl', [])
       			var CurrentUser = user;
         		if (CurrentUser.get("verified")){
               myUser.setUserAccout($scope.data.username);
-        			alert("WelCome");
+        			alert("Welcome");
               setTimeout("location.href='#/app/MainPage'",0);
           			//setTimeout("location.href='#/MainPage'",0);
         		}else{

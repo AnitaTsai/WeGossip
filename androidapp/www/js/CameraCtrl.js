@@ -27,7 +27,7 @@ angular.module('starter.CameraCtrl', ['ionic','ngCordova'] )
                     });
                 }
               $scope.choosePhoto = function () {
-              	alert("choosePhoto");
+              	//alert("choosePhoto");
                   var options = {
                     quality: 75,
                     destinationType: Camera.DestinationType.DATA_URL,
