@@ -1,0 +1,29 @@
+<ion-view title="MyCommunity守護家園">
+
+  <ion-nav-bar align-title="center" class="bar-dark nav-title-slide-ios7">      
+  </ion-nav-bar>
+
+  <ion-content padding="false" class="has-header">
+    <form>
+      <img src="http://files.parsetfss.com/7d8b7bdd-bc43-4b9b-845f-aeebb1b1239d/tfss-a7616e5d-988c-4cc4-90fa-e72e870b2db0-login_icon1.png" width="50%" height="auto" style="width: 50%; height: auto; display : block ;  margin:20px auto;" >
+
+        <ion-list >
+          <label class="item item-input">
+            <span class="input-label" >帳號</span>
+            <input type="text" placeholder="請輸入帳號..." ng-model="data.username">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">密碼</span>
+            <input type="password" placeholder="請輸入密碼..." ng-model="data.password">
+          </label>
+        </ion-list>
+
+        <div style="text-align: center;">
+          <button class="button button-full button-positive" style="margin-top:30px;" ng-click="Login()">登入</button>
+          <a href="#/SignUp" class="button button-full button-positive">註冊</a>           
+        </div>
+    <p style="margin-top:100px; text-align: center; color:#C0C0C0;">JerryLo AnitaTsai</p>
+    </form>
+  </ion-content>
+
+</ion-view>

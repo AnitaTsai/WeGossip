@@ -1,0 +1,86 @@
+<!--googlemap-->
+<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBUMIcfRwkjLaMVbte4kk9_buYZ1PmPrHU&sensor=true"></script>-->
+<ion-view title="MyCommunity">
+
+    <ion-content padding="true" class="has-header" >
+      
+      <div  data-tap-disabled="true">
+
+        <ui-gmap-google-map center="map.center" zoom="map.zoom"control="map.control" options="map.options">
+
+          <ui-gmap-marker coords="User.coords" idKey="User.id" options="User.options" >
+          </ui-gmap-marker>
+          <!--
+          <ui-gmap-marker coords="marker.coords" idKey="marker.id" options="marker.options" >
+
+            <ui-gmap-window coords="marker.coords" >
+                <div>{{title}}</div>
+            </ui-gmap-window>
+
+          </ui-gmap-marker>
+          -->
+          <ui-gmap-markers models="Markers" coords="'self'" options="'options'" >
+            <ui-gmap-windows  >
+                <div ng-non-bindable>{{title}}</div>
+            </ui-gmap-window>
+          </ui-gmap-markers>
+
+        </ui-gmap-google-map>
+
+      </div>
+
+      <!-- refresh-->
+        <button class="float-button2" ng-click="RefreshData()">
+          <span class="height-fix2">
+          <a class="content2">
+          <i class="ion-refresh"> </i>
+          </a>
+          </span>
+        </button>  
+
+        <!-- locate school -->
+        <button class="float-button1" ng-click="centerOnYZU()">
+          <span class="height-fix1">
+          <a class="content1">
+          <i class="ion-ios-home"> </i>
+          </a>
+          </span>
+        </button>
+
+        <!-- locate myself -->
+        <button class="float-button" ng-click="centerOnMe()">
+          <span class="height-fix">
+          <a class="content">
+          <i class="ion-ios-location"> </i>
+          </a>
+          </span>
+        </button>                   
+
+      <div class="button-bar" style=" position: absolute; bottom: 2px;">
+        <!--<button class="button button-icon icon ion-speakerphone"  ng-click=""></button>-->
+        <button class="button button-icon icon ion-compose" ng-click="showPopup()"></button>
+        <button class="button button-icon icon ion-ios-telephone" ng-click="showAlert()"></button>
+      </div>
+       
+      <script id="popup-template.html" type="text/ng-template">
+
+            <div class="button-bar">
+                <a class="button button-small" ng-class="{'button-positive': isActive('resource')}" ng-click="setActive('resource')">物資</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('post')}" ng-click="setActive('post')">通報</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('help')}" ng-click="setActive('help')">求助</a>
+             </div>
+        <p></p>
+        <textarea placeholder="輸入訊息..." style="width:280px;height:150px;background-color: #E8E8E8 " ng-model="data.message"></textarea>
+        <p></p>
+        </div>
+       <div style="text-align: center;">
+         <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+         <a class="button button-icon icon ion-camera" ng-click = "takePhoto()"></a>
+        </div>
+       </script>
+
+         
+
+    </ion-content>
+
+</ion-view>
