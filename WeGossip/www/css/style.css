@@ -1,0 +1,147 @@
+
+.scroll {
+  height: 100%;
+  padding-top: 24px !important;
+}
+
+.bar-header {
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none;
+    border-bottom: none;
+}
+
+.angular-google-map-container {
+    position: absolute;
+    display:block;
+    top: 0px;
+    bottom: 50px;
+    right: 0;
+    left: 0;  
+}
+
+/*side menu*/
+.my-menu {
+  background-color:  #3366FF;
+}
+.my-menu .list {
+  background-color: transparent;
+}
+
+.my-menu .item, .my-menu .item-content, .my-menu .item-complex{
+  background-color: transparent;
+  color:    #FFFFFF ;
+  border-color: rgba(0,0,0,0);
+}
+
+.newMessage .popup
+{
+  min-width: 80% !important;
+    height: 600px;
+}
+
+.newMessage .popup-title
+{
+  color:#0000FF;
+}
+
+
+/*float button*/
+.float-button { 
+background-color:#303f9f;
+opacity: 0.7;
+color: white;
+border-radius: 50%;
+border: none;
+/*border-radius:15% 0 0 0;*/
+width: 30px;
+padding: 25px;
+font-size: 40px;
+position: fixed;
+bottom: 13%; /* Adjust height */
+right: 5%; /* Adjust position */
+z-index: 1000;
+}
+ 
+.float-button .height_fix {
+  margin-top: 100%;
+  /*border: 1px solid red;*/
+}
+ 
+.float-button .content {
+  position: absolute;
+  left: 0;
+  top: 40%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  color: white;
+}
+
+/*float-button1*/
+.float-button1 { 
+background-color:#E00000  ;
+opacity: 0.7;
+color: white;
+border-radius: 50%;
+border: none;
+/*border-radius:15% 0 0 0;*/
+width: 30px;
+padding: 25px;
+font-size: 40px;
+position: fixed;
+bottom: 23%; /* Adjust height */
+right: 5%; /* Adjust position */
+z-index: 1000;
+}
+ 
+.float-button1 .height_fix1 {
+  margin-top: 100%;
+  /*border: 1px solid red;*/
+}
+ 
+.float-button1 .content1 {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  color: white;
+}
+
+/*float-button2*/
+.float-button2 { 
+background-color:#303f9f  ;
+opacity: 0.7;
+color: white;
+border-radius: 50%;
+border: none;
+/*border-radius:15% 0 0 0;*/
+width: 30px;
+padding: 25px;
+font-size: 40px;
+position: fixed;
+bottom: 13%; /* Adjust height */
+left: 5%; /* Adjust position */
+z-index: 1000;
+}
+ 
+.float-button2 .height_fix2 {
+  margin-top: 100%;
+  /*border: 1px solid red;*/
+}
+ 
+.float-button2 .content2 {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  color: white;
+}
+/* Empty. Add your own CSS if you like */

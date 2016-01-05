@@ -1,0 +1,37 @@
+<ion-view title="登入">
+    <ion-nav-bar align-title="center" class="bar-calm nav-title-slide-ios7">      
+    </ion-nav-bar>
+    <ion-content padding="false" class="has-header">
+        <form>
+            <img src="http://files.parsetfss.com/673d9c47-c4ac-4a19-925c-fb660920c983/tfss-3f162d74-a379-42d8-8604-8a1fc8fe3c48-wegossip_1.png" width="50%" height="auto" style="width: 50%; height: auto; display : block ;  margin:10px auto;" >
+            <ion-list >
+
+                <label class="item item-input">
+                    <span class="input-label" >Username</span>
+                    <input type="text" placeholder="enter your username..." ng-model="data.username">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">password</span>
+                    <input type="password" placeholder="enter your password..." ng-model="data.password">
+                </label>
+
+            </ion-list>
+
+            <div style="text-align: center;">
+                <button class="button button-calm" style="width:80%; margin:20px;" ng-click="Login()">Login</button>
+
+                <a href="#/SignUp" class="button button-stable button-outline button-inline button-small" style="margin-right:50px;">CreateAccount</a>
+
+                <a href="#/forgetPassword" class="button button-stable button-outline button-inline button-small">ForgetPassword</a>
+
+                <div style=" text-align: center; margin:15px;">
+                    <button class="button button-positive"  style="width: 40%;" ng-click="loginFacebook()">
+                        FB login
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
