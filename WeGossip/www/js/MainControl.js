@@ -127,7 +127,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           for (var i = 0; i < results.length; i++) {
             var messagetype = "resource";
               if(results[i].get('type') == "group"){
-                messagetype =  '<h1 style="color:blue;">物資</h1>';
+                messagetype =  '<h1 style="color:blue;">糾團</h1>';
               }
               if(results[i].get('type') == "chat"){
                 messagetype = '<h1 style="color:green;">閒聊</h1>';
