@@ -1,4 +1,4 @@
-var chattype = "resource";
+var chattype = "group";
 var uploadpic = "";
 var ID = 0;
 var positionx ;
@@ -73,14 +73,14 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
         for (var i = 0; i < results.length; i++) {
           var messagetype = "resource";
-          if(results[i].get('type') == "resource"){
-            messagetype =  '<h1 style="color:blue;">物資</h1>';
+          if(results[i].get('type') == "group"){
+            messagetype =  '<h1 style="color:blue;">糾團</h1>';
           }
-          if(results[i].get('type') == "post"){
+          if(results[i].get('type') == "chat"){
             messagetype = '<h1 style="color:green;">閒聊</h1>';
           }
           if(results[i].get('type') == "help"){
-            messagetype = '<h1 style="color:red;">求助</h1>';
+            messagetype = '<h1 style="color:red;">求救</h1>';
           }
           var marker ={
             latitude: results[i].get('position')['_latitude'],
@@ -88,7 +88,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             id:ID,
             title: messagetype  + '<p>來自: ' +results[i].get('username') + '</p>' 
                                                + '<p>內容: ' + results[i].get('message') + '</p>'
-                                               + '<img src="' + results[i].get('photo')['_url'] + '"style="width:150px;height:150px;">',
+                                               /*+ '<img src="' + results[i].get('photo')['_url'] + '"style="width:150px;height:150px;">'*/,
             options:{
               icon:''
             },
@@ -96,10 +96,10 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           ID++;
 
             
-          if(results[i].get('type') == "resource"){
+          if(results[i].get('type') == "group"){
             marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
           }
-          if(results[i].get('type') == "post"){
+          if(results[i].get('type') == "chat"){
             marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png'; 
           }
           if(results[i].get('type') == "help"){
@@ -126,14 +126,14 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
           for (var i = 0; i < results.length; i++) {
             var messagetype = "resource";
-              if(results[i].get('type') == "resource"){
-                messagetype =  '<h1 style="color:blue;">物資</h1>';
+              if(results[i].get('type') == "group"){
+                messagetype =  '<h1 style="color:blue;">糾團</h1>';
               }
-              if(results[i].get('type') == "post"){
-                messagetype = '<h1 style="color:green;">通報</h1>';
+              if(results[i].get('type') == "chat"){
+                messagetype = '<h1 style="color:green;">閒聊</h1>';
               }
               if(results[i].get('type') == "help"){
-                messagetype = '<h1 style="color:red;">求助</h1>';
+                messagetype = '<h1 style="color:red;">求救</h1>';
               }
 
             var marker ={
@@ -142,7 +142,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
               id:ID,
               title: messagetype  + '<p>來自: ' +results[i].get('username') + '</p>' 
                                                + '<p>內容: ' + results[i].get('message') + '</p>'
-                                              + '<img src="' + results[i].get('photo')['_url'] + '"style="width:150px;height:150px;">',
+                                              /*+ '<img src="' + results[i].get('photo')['_url'] + '"style="width:150px;height:150px;">'*/,
               options:{
                 icon:''
               },
@@ -150,10 +150,10 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             ID++;
 
               
-            if(results[i].get('type') == "resource"){
+            if(results[i].get('type') == "group"){
               marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
             }
-            if(results[i].get('type') == "post"){
+            if(results[i].get('type') == "chat"){
               marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
               
             }
@@ -197,7 +197,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
       console.log("Clicked!");
       model.show = !model.show;
     };
-
+    /*
     $scope.imgURI = '';
       $scope.takePhoto = function () {
        // alert("mainPhoto");
@@ -221,17 +221,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
                     });
       }
 
-     
-    $scope.showAlert = function() {
-       /*var alertPopup = $ionicPopup.alert({
-         title: '實用災情通報電話',
-         template: '桃園縣應變中心: (03)3377662 桃園市公所: (03)3349581'
-       });
-
-       alertPopup.then(function(res) {
-         //console.log('Thank you for not eating my delicious ice cream cone');
-       });*/
-     };
+     */
 
    $scope.showPopup = function() {
     $scope.data = {};
@@ -261,37 +251,40 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
       console.log('message', res);
       alert(res);
-
+      
       var MessageObject = Parse.Object.extend("MessageObject");
       var message = new MessageObject();
 
-
       navigator.geolocation.getCurrentPosition(function(pos) {
-        message.set("position", new Parse.GeoPoint({latitude: pos.coords.latitude , longitude:pos.coords.longitude}));
         positionx = pos.coords.latitude;
         positiony = pos.coords.longitude;
+        
       }, function(error) {
         alert('Unable to get location: ' + error.message);
       });
+
       
+      message.set("position", new Parse.GeoPoint({latitude: positionx , longitude:positiony}));
       message.set("username", myUser.getUserAccout()); //
       message.set("message", res);
       message.set("type", chattype);//
+      /*
        var parseFile = new Parse.File('messagePhoto.png',{base64:uploadpic});                    
       message.set("photo",parseFile);
+      */
       message.save(null, {
         success: function (result){        
           alert("Success");
 
-           var messagetype = "resource";
-              if(chattype == "resource"){
-                messagetype =  '<h1 style="color:blue;">物資</h1>';
+           var messagetype = "group";
+              if(chattype == "group"){
+                messagetype =  '<h1 style="color:blue;">糾團</h1>';
               }
-              if(chattype== "post"){
-                messagetype = '<h1 style="color:green;">通報</h1>';
+              if(chattype== "chat"){
+                messagetype = '<h1 style="color:green;">閒聊</h1>';
               }
               if(chattype == "help"){
-                messagetype = '<h1 style="color:red;">求助</h1>';
+                messagetype = '<h1 style="color:red;">求救</h1>';
               }
               //<img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
           var marker ={
@@ -300,16 +293,16 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
             id:ID,
             title: messagetype  + '<p>來自: ' +myUser.getUserAccout() + '</p>' 
                                                + '<p>內容: ' + res + '</p>'
-                                              + '<img src="' + $scope.imgURI + '"style="width:150px;height:150px;">',
+                                              /*+ '<img src="' + $scope.imgURI + '"style="width:150px;height:150px;">'*/,
             options:{
               icon:''
             },
           };
           ID++;
-          if(chattype == "resource"){
+          if(chattype == "group"){
             marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png';
           }
-          if(chattype == "post"){
+          if(chattype == "chat"){
             marker.options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png'; 
           }
           if(chattype == "help"){
@@ -319,7 +312,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           $scope.Markers.push(marker);
 
         },error: function (error){
-          alert("ERROR")} 
+          alert("Message ERROR")} 
       });
       
     });
@@ -327,13 +320,13 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
      $scope.active = 'group';
   $scope.setActive = function(type) {
-    if(type == "resource"){
-      alert("change type to resource");
+    if(type == "group"){
+      alert("change type to group");
       chattype = type;
       console.log(chattype);
     }
-    if(type == "post"){
-      alert("change type to post");
+    if(type == "chat"){
+      alert("change type to chat");
       chattype = type;
       console.log(chattype);
     }
