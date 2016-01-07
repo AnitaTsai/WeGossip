@@ -1,6 +1,6 @@
 <!--googlemap-->
 <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBUMIcfRwkjLaMVbte4kk9_buYZ1PmPrHU&sensor=true"></script>-->
-<ion-view title="MyCommunity">
+<ion-view title="WeGossip">
 
     <ion-content padding="true" class="has-header" >
       
@@ -57,12 +57,12 @@
         </button>                   
 
       <div class="button-bar" style=" position: absolute; bottom: 2px;">
-        <!--<button class="button button-icon icon ion-speakerphone"  ng-click=""></button>-->
-        <button class="button button-icon icon ion-compose" ng-click="showPopup()"></button>
-        <button class="button button-icon icon ion-ios-telephone" ng-click="showAlert()"></button>
-      </div>
+    <button class="button button-icon icon ion-ios-search-strong"  ng-click="showAlert()"></button>
+    <button class="button button-icon icon ion-speakerphone" ng-click="showPopup()"></button>
+    <button class="button button-icon icon ion-ios-bell-outline" ng-click="showAlert()"></button>
+        </div>
        
-      <script id="popup-template.html" type="text/ng-template">
+      <!--<script id="popup-template.html" type="text/ng-template">
 
             <div class="button-bar">
                 <a class="button button-small" ng-class="{'button-positive': isActive('resource')}" ng-click="setActive('resource')">物資</a>
@@ -77,8 +77,24 @@
          <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
          <a class="button button-icon icon ion-camera" ng-click = "takePhoto()"></a>
         </div>
-       </script>
+       </script>-->
 
+       <script id="popup-template.html" type="text/ng-template">
+
+            <div class="button-bar">
+                <a class="button button-small" ng-class="{'button-positive': isActive('group')}" ng-click="setActive('group')">揪團</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('help')}" ng-click="setActive('help')">求救</a>
+                <a class="button button-small" ng-class="{'button-positive': isActive('chat')}" ng-click="setActive('chat')">閒聊</a>
+             </div>
+        <p></p>
+        <textarea placeholder="輸入訊息..." style="width:280px;height:150px;background-color: #E8E8E8 " ng-model="data.message"></textarea>
+        <p></p>
+        <ion-list>
+            <ion-toggle ng-model=value ng-change="positionChange()">顯示位置</ion-toggle>
+            <ion-item>選擇顯示對象</ion-item>
+        </ion-list>
+
+      </script>
          
 
     </ion-content>
