@@ -55,6 +55,7 @@ angular.module('starter.LoginControl', [])
                   alert("Erroe password or username!");
                 }
             });
+            myUser.setUserAccout($scope.data.username); 
             setTimeout("location.href='#/Verification'",0);
           },error:function(error){
             alert(error);
@@ -70,7 +71,8 @@ angular.module('starter.LoginControl', [])
           alert("success!!");
           CurrentUser.set("verified",true);
           CurrentUser.save(null,{}); 
-          myUser.setUserAccout($scope.data.username); 
+
+          
           setTimeout("location.href='#/app/MainPage'",0);
       }else{
           alert("It is not verification number!!");
