@@ -127,7 +127,7 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           for (var i = 0; i < results.length; i++) {
             var messagetype = "resource";
               if(results[i].get('type') == "group"){
-                messagetype =  '<h1 style="color:blue;">糾團</h1>';
+                messagetype =  '<h1 style="color:blue;">物資</h1>';
               }
               if(results[i].get('type') == "chat"){
                 messagetype = '<h1 style="color:green;">閒聊</h1>';
@@ -220,8 +220,20 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
                         alert("error");
                     });
       }
+      */
+     
+    $scope.showAlert = function() {
+      /*
+       var alertPopup = $ionicPopup.alert({
+         title: '實用災情通報電話',
+         template: '桃園縣應變中心: (03)3377662 桃園市公所: (03)3349581'
+       });
 
-     */
+       alertPopup.then(function(res) {
+         //console.log('Thank you for not eating my delicious ice cream cone');
+       });
+      */
+    };
 
    $scope.showPopup = function() {
     $scope.data = {};
@@ -251,27 +263,24 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
 
       console.log('message', res);
       alert(res);
-      
+
       var MessageObject = Parse.Object.extend("MessageObject");
       var message = new MessageObject();
 
+
       navigator.geolocation.getCurrentPosition(function(pos) {
+        message.set("position", new Parse.GeoPoint({latitude: pos.coords.latitude , longitude:pos.coords.longitude}));
         positionx = pos.coords.latitude;
         positiony = pos.coords.longitude;
-        
       }, function(error) {
         alert('Unable to get location: ' + error.message);
       });
-
       
-      message.set("position", new Parse.GeoPoint({latitude: positionx , longitude:positiony}));
       message.set("username", myUser.getUserAccout()); //
       message.set("message", res);
       message.set("type", chattype);//
-      /*
        var parseFile = new Parse.File('messagePhoto.png',{base64:uploadpic});                    
       message.set("photo",parseFile);
-      */
       message.save(null, {
         success: function (result){        
           alert("Success");
@@ -312,13 +321,13 @@ angular.module('starter.MainControl', ['ionic','ngCordova'])
           $scope.Markers.push(marker);
 
         },error: function (error){
-          alert("Message ERROR")} 
+          alert("ERROR")} 
       });
       
     });
   };
 
-     $scope.active = 'group';
+    $scope.active = 'group';
   $scope.setActive = function(type) {
     if(type == "group"){
       alert("change type to group");
